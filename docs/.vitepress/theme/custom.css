@@ -1,0 +1,22 @@
+﻿/* Increase main content width */
+:root {
+    --vp-layout-max-width: 100%; /* Remove max-width constraint */
+    --vp-content-width: 2000px;   /* Default: 688px */
+}
+
+/* Wider layout for larger screens */
+@media (min-width: 1440px) {
+    :root {
+        --vp-content-width: 1200px; /* Even wider on big screens */
+    }
+}
+
+/* Optional: Increase sidebar width */
+:root {
+    --vp-sidebar-width: 300px; /* Default: 272px */
+}
+
+/* Optional: Increase code block width */
+.vp-doc div[class*='language-'] {
+    max-width: 100%; /* Stretch code blocks to full content width */
+}

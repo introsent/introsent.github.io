@@ -11,17 +11,21 @@ export default {
         ['meta', {
             'http-equiv': 'Content-Security-Policy',
             content: "frame-src https://sketchfab.com; media-src 'self' data:"
+        }],
+        ['link', {
+            rel: 'stylesheet',
+            href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
         }]
     ],
 
     themeConfig: {
         nav: [
             { text: 'Home', link: '/' },
-            { text: 'Projects', link: '/test-component' }
+            { text: 'Projects', link: '/projects' }
         ],
-        sidebar: [
-            { text: 'Home', link: '/' },
-            { text: 'Projects', link: '/test-component' }
-        ]
+        footer: {
+            message: 'Designed and built by Ivans Minajevs.',
+            copyright: '© 2025 Ivans Minajevs | All rights reserved.'
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿<template>
+  <h2 class="section-title">Projects</h2>
   <div class="slider-container">
     <button class="arrow left" @click="prevSlide">←</button>
     <div class="slider">
@@ -12,7 +13,7 @@
           @mouseleave="handleLeave(index)"
       >
         <video
-            ref="videos"
+            :ref="el => setVideoRef(el, index)"
             :src="project.video"
             muted
             loop
@@ -33,17 +34,67 @@ export default {
   data() {
     return {
       currentIndex: 0,
+      videos: [],
       projects: [
         {
           title: "Salamander",
-          description: "Real-time rendering with Vulkan API",
+          description: "Real-time rendering engine with Vulkan API",
           video: "/videos/salamander.mp4",
           link: "/projects/salamander"
         },
+        {
+          title: "Software Raytracer",
+          description: "Software raytracer with C++",
+          video: "/videos/raytracer.mp4",
+          link: "/projects/raytracer"
+        },
+        {
+          title: "Dual Rasterizer",
+          description: "Software and hardware (DirectX) rasterizer",
+          video: "/videos/rasterizer.mp4",
+          link: "/projects/rasterizer"
+        },
+        {
+          title: "Reel or nothing!",
+          description: "Physics programming for group project",
+          video: "/videos/reel-or-nothing.mp4",
+          link: "/projects/reel-or-nothing"
+        },
+        {
+          title: "Nocturne Engine and Q*bert",
+          description: "Game engine with retro game example",
+          video: "/videos/qbert-video.mp4",
+          link: "/projects/qbert"
+        }
       ]
     }
   },
+  watch: {
+    currentIndex(newIndex, oldIndex) {
+      // Reset old slide video
+      if (this.videos[oldIndex]) {
+        this.videos[oldIndex].pause();
+        this.videos[oldIndex].currentTime = 0;
+        this.videos[oldIndex].style.filter = "brightness(20%)";
+      }
+
+      // Initialize new slide video
+      if (this.videos[newIndex]) {
+        this.videos[newIndex].style.filter = "brightness(0%)";
+      }
+    }
+  },
   methods: {
+    setVideoRef(el, index) {
+      if (el) {
+        this.videos[index] = el;
+        if (index === this.currentIndex) {
+          this.$nextTick(() => {
+            el.style.filter = "brightness(70%)";
+          });
+        }
+      }
+    },
     nextSlide() {
       this.currentIndex = (this.currentIndex + 1) % this.projects.length;
     },
@@ -51,16 +102,16 @@ export default {
       this.currentIndex = (this.currentIndex - 1 + this.projects.length) % this.projects.length;
     },
     handleHover(index) {
-      if (index === this.currentIndex) {
-        this.$refs.videos[index].play();
-        this.$refs.videos[index].style.filter = "brightness(100%)";
+      if (index === this.currentIndex && this.videos[index]) {
+        this.videos[index].play();
+        this.videos[index].style.filter = "brightness(100%)";
       }
     },
     handleLeave(index) {
-      if (index === this.currentIndex) {
-        this.$refs.videos[index].pause();
-        this.$refs.videos[index].currentTime = 0;
-        this.$refs.videos[index].style.filter = "brightness(70%)";
+      if (index === this.currentIndex && this.videos[index]) {
+        this.videos[index].pause();
+        this.videos[index].currentTime = 0;
+        this.videos[index].style.filter = "brightness(70%)";
       }
     },
     openProject(link) {
@@ -68,13 +119,25 @@ export default {
     }
   },
   mounted() {
-    // Initialize first video
-    this.$refs.videos[0].style.filter = "brightness(70%)";
+    // Fallback initialization
+    this.$nextTick(() => {
+      if (this.videos[0] && !this.videos[0].style.filter) {
+        this.videos[0].style.filter = "brightness(70%)";
+      }
+    });
   }
 }
 </script>
 
 <style scoped>
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2.5rem;
+  color: var(--vp-c-text-1);
+}
+
 .slider-container {
   position: relative;
   width: 100%;
@@ -88,6 +151,7 @@ export default {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  border-radius: 2%;
 }
 
 .slide {
@@ -99,10 +163,13 @@ export default {
   opacity: 0;
   transition: opacity 0.5s ease;
   cursor: pointer;
+  pointer-events: none;
 }
 
 .slide.active {
   opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
 }
 
 .slide video {
@@ -123,7 +190,7 @@ export default {
   justify-content: center;
   align-items: center;
   color: white;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.2);
   transition: opacity 0.3s ease;
   text-align: center;
   padding: 20px;

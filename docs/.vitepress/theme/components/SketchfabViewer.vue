@@ -25,8 +25,7 @@ export default {
     iframeStyle() {
       return {
         width: '100%',
-        height: `${this.height}px`,
-        border: '1px solid green'
+        height: `${this.height}px`
       }
     }
   },
@@ -44,7 +43,6 @@ export default {
 .debug {
   background: #f0f8ff;
   padding: 15px;
-  border: 1px solid #ddd;
   margin-top: 10px;
 }
 </style>
