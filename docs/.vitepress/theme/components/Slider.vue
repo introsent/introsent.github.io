@@ -18,6 +18,7 @@
             muted
             loop
             playsinline
+            preload="auto"
         />
         <div class="overlay">
           <h3>{{ project.title }}</h3>

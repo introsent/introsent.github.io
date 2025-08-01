@@ -53,6 +53,7 @@
                   muted
                   loop
                   playsinline
+                  preload="auto"
               >
                 <source :src="project.video" type="video/mp4">
               </video>
@@ -754,55 +755,115 @@ export default {
   }
 }
 
-@media (max-width: 768px) {
-  .portfolio-wrapper {
-    padding: 1rem;
-  }
-
+@media (max-width: 480px) {
   .projects-portfolio {
-    padding: 1.5rem;
+    padding: 1rem;
+    margin: 0.5rem;
   }
 
   .header h1 {
-    font-size: 2.2rem;
-  }
-
-  .header p {
-    font-size: 1.1rem;
+    font-size: 1.8rem;
   }
 
   .featured-container {
     height: 400px;
   }
 
-  .categories-grid {
-    grid-template-columns: 1fr;
-  }
-
   .section-title {
     font-size: 1.8rem;
   }
-}
 
-@media (max-width: 480px) {
-  .header h1 {
-    font-size: 1.8rem;
+  .category {
+    max-width: 225px;
   }
 
-  .featured-overlay {
-    padding: 1.5rem;
+  .category-title {
+    font-size: 1.4rem;
   }
 
-  .featured-overlay h3 {
-    font-size: 1.6rem;
+  .projects-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem;
   }
 
   .project-card {
     height: 180px;
+    max-width: 100%;
+  }
+
+  .project-title {
+    font-size: 1rem;
   }
 
   .sketchfab-viewer {
-    height: 350px;
+    height: 300px;
+  }
+
+  .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+
+  .project-popup {
+    display: none;
+  }
+
+  .featured-overlay h3 {
+    font-size: 1rem;
+  }
+  .featured-overlay p {
+    font-size: 0.7rem;
+  }
+}
+
+/* Special adjustments for very small screens */
+@media (max-width: 360px) {
+  .header h1 {
+    font-size: 1.6rem;
+  }
+
+  .btn {
+    padding: 0.2rem 1rem;
+    font-size: 0.6rem;
+  }
+
+  .featured-overlay h3 {
+    font-size: 1rem;
+  }
+  .featured-overlay p {
+    visibility: hidden;
+    font-size: 0rem;
+    padding: 0;
+    margin: 0;
+  }
+  .header p {
+    font-size: 0.9rem;
+  }
+
+  .category-title {
+    font-size: 1.3rem;
+  }
+
+  .categories-grid {
+    width: fit-content;
+  }
+
+  .category {
+    width: 170px;
+  }
+
+  .category-title
+  {
+    font-size: 1rem;
+    width: fit-content;
+  }
+
+  .project-title
+  {
+    font-size: 0.8rem;
+  }
+  .project-card {
+    width: 130px;
   }
 }
 </style>
