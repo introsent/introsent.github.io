@@ -10,7 +10,7 @@ export default {
         }],
         ['meta', {
             'http-equiv': 'Content-Security-Policy',
-            content: "frame-src https://sketchfab.com; media-src 'self' data:"
+            content: "frame-src https://sketchfab.com https://*.canva.com; media-src 'self' data:"
         }],
         ['link', {
             rel: 'stylesheet',
