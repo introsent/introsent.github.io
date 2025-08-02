@@ -395,8 +395,7 @@ export default {
     }
 
     const goToProject = (link) => {
-      // In a real app, this would navigate to the project page
-      alert(`Navigating to: ${link}`)
+      window.location.href = link;
     }
 
     return {

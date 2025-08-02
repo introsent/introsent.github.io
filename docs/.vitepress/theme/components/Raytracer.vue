@@ -1,12 +1,12 @@
 ﻿<template>
-  <div class="salamander-container">
+  <div class="raytracer-container">
     <!-- Project Header -->
     <div class="project-header">
-      <h1>Salamander</h1>
-      <p class="project-tagline">A Vulkan-based 3D rendering engine built with C++20</p>
+      <h1>CPU Raytracer</h1>
+      <p class="project-tagline">A C++ implementation of a basic raytracer with global illumination rendering</p>
       <div class="project-meta">
         <a
-            href="https://github.com/introsent/Salamander.git"
+            href="https://github.com/introsent/Raytracer"
             class="github-btn"
             target="_blank"
         >
@@ -22,47 +22,48 @@
     <div class="section">
       <h2 class="section-title">Project Overview</h2>
       <p class="section-description">
-        Salamander is a 3D rendering engine built with Vulkan using C++20. Developed as a university project for the <strong>Graphics Programming 2</strong> course at Howest University, it demonstrates the capabilities of the Vulkan framework while adhering to modern design practices.
+        This C++ raytracer simulates the physical properties of light and its interaction with 3D objects,
+        implementing a global illumination rendering algorithm that accurately models light transport.
       </p>
 
       <div class="features-grid">
         <div class="feature-card">
-          <h3>Modern Rendering</h3>
-          <p>Deferred rendering pipeline with HDR and tone mapping for realistic lighting.</p>
+          <h3>Raytracing Algorithm</h3>
+          <p>Simulates bouncing of light rays with recursive tracing for reflections and refractions.</p>
         </div>
         <div class="feature-card">
-          <h3>Advanced Lighting</h3>
-          <p>Directional and omni lights with shadow mapping and Image-Based Lighting (IBL).</p>
+          <h3>Geometric Primitives</h3>
+          <p>Supports spheres, planes, cylinders, and complex models like the Stanford Bunny.</p>
         </div>
         <div class="feature-card">
-          <h3>Optimization</h3>
-          <p>Double buffering and depth prepass for improved rendering performance.</p>
+          <h3>Lighting & Material</h3>
+          <p>Implements ambient, diffuse lighting with material properties including reflection.</p>
         </div>
       </div>
     </div>
 
-    <!-- Rendering Pipeline -->
+    <!-- Example Scenes -->
     <div class="section">
-      <h2 class="section-title">Rendering Pipeline</h2>
+      <h2 class="section-title">Example Scenes</h2>
       <div class="rendering-stages">
         <div class="stage-navigator">
           <div class="stage-names">
             <div
-                v-for="(stage, index) in stages"
-                :key="stage.id"
+                v-for="(scene, index) in scenes"
+                :key="scene.id"
                 class="stage-name"
-                :class="{ active: activeStageIndex === index }"
-                @click="setActiveStage(index)"
+                :class="{ active: activeSceneIndex === index }"
+                @click="setActiveScene(index)"
             >
-              {{ stage.title }}
+              {{ scene.title }}
             </div>
           </div>
         </div>
 
         <div class="stage-viewer">
           <img
-              :src="activeStage.image"
-              :alt="activeStage.title"
+              :src="activeScene.image"
+              :alt="activeScene.title"
               class="stage-image"
           />
         </div>
@@ -72,24 +73,28 @@
     <!-- Project Story -->
     <div class="section">
       <div class="project-story">
-        <h3>The Salamander Journey</h3>
+        <h3>The Raytracing Journey</h3>
         <p>
-          Developing Salamander was a challenging but rewarding experience during my Graphics Programming 2 course at Howest. Building a Vulkan rendering engine from scratch pushed my understanding of modern graphics APIs and rendering techniques to new levels.
+          Developing this CPU raytracer was an exciting dive into the fundamentals of computer graphics.
+          Implementing the core algorithms from scratch provided deep insights into light transport,
+          material properties, and computational optimization.
         </p>
 
         <div class="challenges">
           <h4>Technical Challenges Overcome</h4>
           <ul class="challenge-list">
-            <li>Vulkan's explicit memory management required careful handling of resources and layouts</li>
-            <li>Debugging complex synchronization issues between rendering passes</li>
-            <li>Implementing physically-based rendering with accurate material properties</li>
-            <li>Optimizing shadow mapping techniques for directional lights</li>
-            <li>Fixing bugs related to memory layouts, normals, and sampling methods</li>
+            <li>Implementing efficient ray-object intersection algorithms</li>
+            <li>Optimizing recursive ray tracing for complex scenes</li>
+            <li>Developing physically accurate material and lighting models</li>
+            <li>Handling complex geometry like the Stanford Bunny</li>
+            <li>Balancing rendering quality with performance constraints</li>
           </ul>
         </div>
 
         <p>
-          Despite these challenges, Salamander became a robust platform demonstrating modern rendering techniques, and a foundation I plan to expand into a full 3D game engine.
+          Despite the computational demands of CPU-based raytracing, the project demonstrates
+          impressive visual results and serves as a solid foundation for understanding
+          modern rendering techniques.
         </p>
       </div>
     </div>
@@ -99,13 +104,13 @@
       <h2 class="section-title">Technical Highlights</h2>
 
       <div class="challenges">
-        <h4>Modern Vulkan Features</h4>
+        <h4>Core Raytracing Features</h4>
         <ul class="challenge-list">
-          <li>Synchronization 2 for efficient resource management</li>
-          <li>Dynamic rendering for flexible pipeline creation</li>
-          <li>Vertex pulling using GPU addresses for efficient geometry processing</li>
-          <li>Deferred rendering architecture for complex lighting scenarios</li>
-          <li>Alpha cutout support for complex materials</li>
+          <li>Recursive ray tracing with configurable depth</li>
+          <li>Support for multiple geometric primitives</li>
+          <li>Physically-based material properties</li>
+          <li>Ambient and diffuse lighting models</li>
+          <li>Basic anti-aliasing implementation</li>
         </ul>
       </div>
 
@@ -113,21 +118,19 @@
         <div class="reference-card">
           <h3>Scene References</h3>
           <ul class="reference-links">
-            <li><a href="https://github.com/KhronosGroup/glTF-Sample-Assets/tree/main/Models/Sponza" target="_blank">Sponza Scene</a></li>
-            <li><a href="https://polyhaven.com/a/circus_arena" target="_blank">Circus Arena Environment</a></li>
-            <li><a href="https://polyhaven.com/a/bambanani_sunset" target="_blank">Bambanani Sunset HDR</a></li>
+            <li><a href="https://github.com/introsent/Raytracer" target="_blank">Project Repository</a></li>
+            <li><a href="https://en.wikipedia.org/wiki/Ray_tracing_(graphics)" target="_blank">Ray Tracing Concepts</a></li>
+            <li><a href="https://graphics.stanford.edu/data/3Dscanrep/" target="_blank">Stanford 3D Models</a></li>
           </ul>
         </div>
 
         <div class="reference-card">
           <h3>Libraries & Tools</h3>
           <ul class="reference-links">
-            <li><a href="https://vulkan.lunarg.com/" target="_blank">Vulkan SDK</a></li>
-            <li><a href="https://www.glfw.org/" target="_blank">GLFW</a></li>
-            <li><a href="https://github.com/g-truc/glm" target="_blank">GLM</a></li>
-            <li><a href="https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator" target="_blank">VMA</a></li>
-            <li><a href="https://github.com/nothings/stb" target="_blank">stb_image</a></li>
-            <li><a href="https://github.com/syoyo/tinygltf" target="_blank">tinygltf</a></li>
+            <li>C++17 Standard</li>
+            <li>CMake Build System</li>
+            <li>STL for core functionality</li>
+            <li>GLM for vector mathematics</li>
           </ul>
         </div>
       </div>
@@ -137,65 +140,41 @@
 
 <script>
 export default {
-  name: 'SalamanderProject',
+  name: 'RaytracerProject',
   data() {
     return {
-      activeStageIndex: 0,
-      stages: [
+      activeSceneIndex: 0,
+      scenes: [
         {
-          id: "depth",
-          title: "Depth Prepass",
-          description: "The initial depth-only pass that optimizes subsequent rendering stages by determining visibility early in the pipeline.",
-          image: "/images/salamander/depth_prepass.png"
+          id: "reference",
+          title: "Reference Scene",
+          description: "Reference scene with basic primitives including spheres, planes and cylinders",
+          image: "/images/raytracer/reference_scene.png"
         },
         {
-          id: "albedo",
-          title: "Albedo Map",
-          description: "Stores the base color of surfaces without lighting information, representing the diffuse reflectivity.",
-          image: "/images/salamander/albedo.png"
-        },
-        {
-          id: "normal",
-          title: "Normal Map",
-          description: "Encodes surface orientation information used for detailed lighting calculations.",
-          image: "/images/salamander/normal_map.png"
-        },
-        {
-          id: "roughness",
-          title: "Roughness Map",
-          description: "Defines the microsurface characteristics that affect how light scatters on the material.",
-          image: "/images/salamander/roughness.png"
-        },
-        {
-          id: "lighting",
-          title: "Lighting Pass (HDR)",
-          description: "Combines all lighting contributions in high dynamic range, preserving details in bright and dark areas.",
-          image: "/images/salamander/lighting_pass.png"
-        },
-        {
-          id: "post",
-          title: "Post-processing",
-          description: "Applies tone mapping and exposure adjustments to convert HDR to displayable range.",
-          image: "/images/salamander/blit_pass.png"
+          id: "bunny",
+          title: "Bunny Scene",
+          description: "Stanford Bunny scene demonstrating complex geometry handling",
+          image: "/images/raytracer/bunny_scene.png"
         }
       ]
     };
   },
   computed: {
-    activeStage() {
-      return this.stages[this.activeStageIndex];
+    activeScene() {
+      return this.scenes[this.activeSceneIndex];
     }
   },
   methods: {
-    setActiveStage(index) {
-      this.activeStageIndex = index;
+    setActiveScene(index) {
+      this.activeSceneIndex = index;
     }
   }
 };
 </script>
 
 <style scoped>
-.salamander-container {
+.raytracer-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
@@ -213,7 +192,7 @@ export default {
 .project-header h1 {
   font-size: 3rem;
   margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--vp-c-brand-1), var(--vp-c-brand-2));;
+  background: linear-gradient(45deg, #646cff, #535bf2);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -225,7 +204,6 @@ export default {
   color: var(--vp-c-text-2);
   margin: 0 auto 1.5rem;
 }
-
 
 .project-meta {
   display: flex;
@@ -275,6 +253,10 @@ export default {
 .section-description {
   margin-bottom: 2rem;
   color: var(--vp-c-text-2);
+  text-align: center;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Overview Cards */
@@ -287,29 +269,31 @@ export default {
 
 .feature-card {
   border-radius: 10px;
-  padding: 0.4rem;
+  padding: 0.7rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
-  border: 3px solid rgba(100, 108, 255, 0.3);
-  background: var(--vp-c-bg-soft);
+  border: 3px solid rgba(100, 108, 255, 0.1);
   text-align: center;
+  background: var(--vp-c-bg-soft);
 }
 
 .feature-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  border-color: rgba(100, 108, 255, 0.8);
+  border-color: rgba(100, 108, 255, 0.3);
 }
-
 
 .feature-card h3 {
   color: var(--vp-c-brand);
+  margin-bottom: 0.75rem;
 }
-.feature-card p
-{
+
+.feature-card p {
   color: var(--vp-c-text-2);
+  font-size: 0.95rem;
 }
-/* Rendering Stages */
+
+/* Example Scenes */
 .rendering-stages {
   border-radius: 12px;
   margin: 2rem 0;
@@ -365,7 +349,6 @@ export default {
 }
 
 /* Project Story */
-
 .project-story h3 {
   text-align: center;
   font-size: 2.5rem;
@@ -441,7 +424,7 @@ export default {
   margin-bottom: 0.8rem;
   padding-left: 1.5rem;
   position: relative;
-  color: var(--vp-c-brand);
+  color: var(--vp-c-text-1);
 }
 
 .reference-links li::before {
@@ -461,41 +444,6 @@ export default {
 .reference-links a:hover {
   color: #646cff;
   text-decoration: underline;
-}
-
-/* Future Plans */
-.future-plans {
-  background: linear-gradient(to right, #f1f5f9, #ffffff);
-  border-radius: 12px;
-  padding: 2rem;
-  margin: 2rem 0;
-}
-
-.future-plans h2 {
-  text-align: center;
-  color: var(--vp-c-brand-2);
-  margin-bottom: 1.5rem;
-  font-size: 1.8rem;
-}
-
-.future-plans ul {
-  list-style-type: none;
-  padding-left: 1.5rem;
-}
-
-.future-plans li {
-  margin-bottom: 1rem;
-  position: relative;
-  padding-left: 1.5rem;
-  line-height: 1.6;
-}
-
-.future-plans li::before {
-  content: "▹";
-  color: #646cff;
-  position: absolute;
-  left: 0;
-  font-size: 1.2rem;
 }
 
 /* Responsive Design */
@@ -527,7 +475,7 @@ export default {
 }
 
 @media (max-width: 480px) {
-  .salamander-container {
+  .raytracer-container {
     padding: 1.5rem;
   }
 
@@ -546,7 +494,6 @@ export default {
   .stage-viewer {
     height: 250px;
   }
-
 
   .references-grid {
     grid-template-columns: 1fr;

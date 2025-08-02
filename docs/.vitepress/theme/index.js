@@ -7,6 +7,7 @@ import Contact from './components/Contact.vue'
 import ProjectsPage from './components/ProjectsPage.vue'
 import Salamander from "./components/Salamander.vue";
 import CanvaEmbed from './components/CanvaEmbed.vue';
+import Raytracer from './components/Raytracer.vue';
 
 export default {
     ...DefaultTheme,
@@ -19,5 +20,6 @@ export default {
         app.component('projects-page', ProjectsPage)
         app.component('salamander', Salamander)
         app.component('canva-embed', CanvaEmbed)
+        app.component('raytracer', Raytracer)
     }
 }
