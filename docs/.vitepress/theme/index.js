@@ -8,6 +8,7 @@ import ProjectsPage from './components/ProjectsPage.vue'
 import Salamander from "./components/Salamander.vue";
 import CanvaEmbed from './components/CanvaEmbed.vue';
 import Raytracer from './components/Raytracer.vue';
+import Rasterizer from './components/Rasterizer.vue';
 
 export default {
     ...DefaultTheme,
@@ -21,5 +22,6 @@ export default {
         app.component('salamander', Salamander)
         app.component('canva-embed', CanvaEmbed)
         app.component('raytracer', Raytracer)
+        app.component('rasterizer', Rasterizer)
     }
 }
