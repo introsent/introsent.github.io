@@ -283,18 +283,6 @@ export default {
         description: "Game engine with retro game example",
         video: "/videos/qbert-video.mp4",
         link: "/projects/nocturne"
-      },
-      {
-        title: "Unity Project",
-        description: "Unity-based game prototype",
-        video: "https://assets.codepen.io/4175254/unity-demo.mp4",
-        link: "/projects/unity"
-      },
-      {
-        title: "Unreal Project",
-        description: "Unreal Engine 5 demo",
-        video: "https://assets.codepen.io/4175254/unreal-demo.mp4",
-        link: "/projects/unreal"
       }
     ])
 
@@ -304,12 +292,6 @@ export default {
         description: "Character action game prototype",
         video: "https://assets.codepen.io/4175254/ninja-demo.mp4",
         link: "/projects/ninja-gaiden"
-      },
-      {
-        title: "Q*Bert Remake",
-        description: "Classic arcade game remake",
-        video: "https://assets.codepen.io/4175254/qbert-demo.mp4",
-        link: "/projects/qbert"
       }
     ])
 
