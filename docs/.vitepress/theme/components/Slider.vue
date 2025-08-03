@@ -65,7 +65,7 @@ export default {
           title: "Nocturne Engine and Q*bert",
           description: "Game engine with retro game example",
           video: "/videos/qbert-video.mp4",
-          link: "/projects/qbert"
+          link: "/projects/nocturne"
         }
       ]
     }

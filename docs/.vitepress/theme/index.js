@@ -10,6 +10,7 @@ import CanvaEmbed from './components/CanvaEmbed.vue';
 import Raytracer from './components/Raytracer.vue';
 import Rasterizer from './components/Rasterizer.vue';
 import ReelOrNothing from "./components/ReelOrNothing.vue";
+import Nocturne from "./components/Nocturne.vue";
 
 export default {
     ...DefaultTheme,
@@ -25,5 +26,6 @@ export default {
         app.component('raytracer', Raytracer)
         app.component('rasterizer', Rasterizer)
         app.component('reel-or-nothing', ReelOrNothing)
+        app.component('nocturne', Nocturne)
     }
 }
