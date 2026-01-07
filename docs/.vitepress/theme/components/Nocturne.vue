@@ -229,7 +229,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .nocturne-container {
   margin: 0 auto;
   padding: 2rem 1.5rem;

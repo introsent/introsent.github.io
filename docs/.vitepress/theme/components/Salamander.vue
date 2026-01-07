@@ -36,10 +36,11 @@
         </div>
         <div class="feature-card">
           <h3>Optimization</h3>
-          <p>Double buffering and depth prepass for improved rendering performance.</p>
+          <p>Double buffering, depth prepass, and mipmap generation for improved performance.</p>
         </div>
       </div>
     </div>
+
 
     <!-- Rendering Pipeline -->
     <div class="section">
@@ -68,13 +69,37 @@
         </div>
       </div>
     </div>
+    <!-- Automatic Exposure Demo -->
+    <div class="section">
+      <h2 class="section-title">Automatic Camera Exposure</h2>
+      <p class="section-description">
+        The engine features automatic exposure adjustment that dynamically adapts to scene brightness, simulating how a real camera or the human eye responds to changing light conditions.
+      </p>
+      <div class="video-container">
+        <video
+            class="demo-video"
+            autoplay
+            muted
+            loop
+            playsinline
+            controls
+        >
+          <source src="/videos/salamander_automatic_exposure.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
 
     <!-- Project Story -->
     <div class="section">
       <div class="project-story">
         <h3>The Salamander Journey</h3>
         <p>
-          Developing Salamander was a challenging but rewarding experience during my Graphics Programming 2 course at Howest. Building a Vulkan rendering engine from scratch pushed my understanding of modern graphics APIs and rendering techniques to new levels.
+          Development of Salamander started in February 2025 as a part of university course called Graphics Programming 2.
+          It thought me a lot about how modern graphics APIs work and what it takes to render simple triangle on the GPU,
+          as well as graphics techniques commonly used in rendering nowadays, such as HDR/tone mapping, IBL, shadow mapping.
+          Later on I started expanding project myself. Proper refactoring, new graphics features as automatic camera exposure and etc.
         </p>
 
         <div class="challenges">
@@ -89,7 +114,7 @@
         </div>
 
         <p>
-          Despite these challenges, Salamander became a robust platform demonstrating modern rendering techniques, and a foundation I plan to expand into a full 3D game engine.
+          Despite these challenges, Salamander became not only a lesson to me, but a modern rendering platform, that will be expanded and maybe released one day.
         </p>
       </div>
     </div>
@@ -98,15 +123,42 @@
     <div class="section">
       <h2 class="section-title">Technical Highlights</h2>
 
-      <div class="challenges">
-        <h4>Modern Vulkan Features</h4>
-        <ul class="challenge-list">
-          <li>Synchronization 2 for efficient resource management</li>
-          <li>Dynamic rendering for flexible pipeline creation</li>
-          <li>Vertex pulling using GPU addresses for efficient geometry processing</li>
-          <li>Deferred rendering architecture for complex lighting scenarios</li>
-          <li>Alpha cutout support for complex materials</li>
-        </ul>
+      <div class="tech-grid">
+        <div class="tech-card">
+          <div class="tech-icon">⚡</div>
+          <h4>Synchronization 2</h4>
+          <p>Efficient resource management</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">🔄</div>
+          <h4>Dynamic Rendering</h4>
+          <p>Flexible pipeline creation</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">📐</div>
+          <h4>Vertex Pulling</h4>
+          <p>GPU addresses for efficient geometry</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">💡</div>
+          <h4>Deferred Rendering</h4>
+          <p>Complex lighting scenarios</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">✂️</div>
+          <h4>Alpha Cutout</h4>
+          <p>Complex material support</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">🖼️</div>
+          <h4>Mipmap Generation</h4>
+          <p>Improved texture quality</p>
+        </div>
+        <div class="tech-card">
+          <div class="tech-icon">📷</div>
+          <h4>Auto Exposure</h4>
+          <p>Realistic light adaptation</p>
+        </div>
       </div>
 
       <div class="references-grid">
@@ -128,6 +180,7 @@
             <li><a href="https://github.com/GPUOpen-LibrariesAndSDKs/VulkanMemoryAllocator" target="_blank">VMA</a></li>
             <li><a href="https://github.com/nothings/stb" target="_blank">stb_image</a></li>
             <li><a href="https://github.com/syoyo/tinygltf" target="_blank">tinygltf</a></li>
+            <li><a href="https://assimp.org/" target="_blank">assimp</a></li>
           </ul>
         </div>
       </div>
@@ -195,6 +248,19 @@ export default {
 </script>
 
 <style scoped>
+
+.video-container {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  background: #0f172a;
+}
+
+.demo-video {
+  width: 100%;
+  display: block;
+}
+
 .salamander-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -218,6 +284,43 @@ export default {
   background-clip: text;
   color: transparent;
   font-weight: 800;
+}
+
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.2rem;
+}
+
+.tech-card {
+  background: var(--vp-c-bg-soft);
+  border-radius: 10px;
+  padding: 1.2rem;
+  text-align: center;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.tech-card:hover {
+  border-color: var(--vp-c-brand);
+  transform: translateY(-3px);
+}
+
+.tech-icon {
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.tech-card h4 {
+  color: var(--vp-c-text-1);
+  margin: 0 0 0.3rem 0;
+  font-size: 0.95rem;
+}
+
+.tech-card p {
+  color: var(--vp-c-text-2);
+  font-size: 0.8rem;
+  margin: 0;
 }
 
 .project-tagline {
@@ -275,6 +378,7 @@ export default {
 .section-description {
   margin-bottom: 2rem;
   color: var(--vp-c-text-2);
+  text-align: center;
 }
 
 /* Overview Cards */
