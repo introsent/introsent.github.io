@@ -1,9 +1,9 @@
 ﻿<template>
   <section class="contact-section">
     <div class="contact-container">
-      <h1>Internship</h1>
-      <p>Interested in graphics and physics programming</p>
-      <a href="ivans.minajevs@yahoo.com" class="contact-button">
+      <h1>Career</h1>
+      <p>Interested in graphics programming positions starting June 2026</p>
+      <a href="mailto:ivans.minajevs@outlook.com" class="contact-button">
         Get In Touch
       </a>
       <div class="social-links">

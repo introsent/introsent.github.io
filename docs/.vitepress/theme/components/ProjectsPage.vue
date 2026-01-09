@@ -272,7 +272,7 @@ export default {
       {
         title: "PPGA",
         description: "Plane-based projective geometric algebra",
-        video: "https://assets.codepen.io/4175254/math-demo.mp4",
+        video: "/videos/ppga.mp4",
         link: "/projects/ppga"
       }
     ])
@@ -289,8 +289,8 @@ export default {
     const gameplayProjects = ref([
       {
         title: "Ninja Gaiden",
-        description: "Character action game prototype",
-        video: "https://assets.codepen.io/4175254/ninja-demo.mp4",
+        description: "Remake of the classic Ninja Gaiden NES game",
+        video: "/videos/ninja-gaiden.mp4",
         link: "/projects/ninja-gaiden"
       }
     ])

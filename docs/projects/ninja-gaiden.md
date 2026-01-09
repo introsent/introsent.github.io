@@ -1,0 +1,5 @@
+﻿---
+layout: home
+---
+
+<ninja-gaiden />

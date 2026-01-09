@@ -11,6 +11,9 @@ import Raytracer from './components/Raytracer.vue';
 import Rasterizer from './components/Rasterizer.vue';
 import ReelOrNothing from "./components/ReelOrNothing.vue";
 import Nocturne from "./components/Nocturne.vue";
+import NinjaGaiden from "./components/NinjaGaiden.vue";
+import PPGA from "./components/PPGA.vue";
+import Resume from './components/Resume.vue'
 
 export default {
     ...DefaultTheme,
@@ -27,5 +30,8 @@ export default {
         app.component('rasterizer', Rasterizer)
         app.component('reel-or-nothing', ReelOrNothing)
         app.component('nocturne', Nocturne)
+        app.component('ninja-gaiden', NinjaGaiden)
+        app.component('ppga', PPGA)
+        app.component('resume', Resume)
     }
 }

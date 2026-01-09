@@ -573,6 +573,37 @@ export default {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .controls-grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    gap: 0.8rem; /* Reduce gap between items */
+  }
+
+  .control-card {
+    flex-direction: column; /* Stack elements vertically */
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .key {
+    margin-right: 0;
+    margin-bottom: 0.5rem;
+    width: 40px; /* Smaller key */
+    height: 40px;
+    font-size: 1rem;
+  }
+
+  .function {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem; /* Slightly smaller text */
+  }
+
+  .mode {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    padding: 0.2rem 0.6rem;
+  }
+
   .project-header h1 {
     font-size: 2.2rem;
   }
@@ -591,6 +622,14 @@ export default {
 }
 
 @media (max-width: 480px) {
+  .function {
+    font-size: 0.85rem; /* Even smaller on very small screens */
+  }
+
+  .mode {
+    font-size: 0.8rem;
+  }
+
   .dual-rasterizer-container {
     padding: 1.5rem;
   }
