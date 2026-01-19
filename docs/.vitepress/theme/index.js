@@ -14,6 +14,7 @@ import Nocturne from "./components/Nocturne.vue";
 import NinjaGaiden from "./components/NinjaGaiden.vue";
 import PPGA from "./components/PPGA.vue";
 import Resume from './components/Resume.vue'
+import MeshAreaLights from "./components/MeshAreaLights.vue";
 
 export default {
     ...DefaultTheme,
@@ -33,5 +34,6 @@ export default {
         app.component('ninja-gaiden', NinjaGaiden)
         app.component('ppga', PPGA)
         app.component('resume', Resume)
+        app.component('mesh-area-lights', MeshAreaLights)
     }
 }

@@ -71,6 +71,7 @@ export default {
                         text: 'Graphics',
                         items: [
                             { text: 'Salamander', link: '/projects/salamander' },
+                            { text: 'Mesh Area Lights', link: '/projects/mesh-area-lights'},
                             { text: 'Dual Rasterizer', link: '/projects/rasterizer' },
                             { text: 'Software Raytracer', link: '/projects/raytracer' }
                         ]
@@ -99,7 +100,7 @@ export default {
         ],
         footer: {
             message: 'Designed and built by Ivans Minajevs.',
-            copyright: 'Â© 2025 Ivans Minajevs | All rights reserved.'
+            copyright: '© 2025 Ivans Minajevs | All rights reserved.'
         },
 
         socialLinks: [
@@ -136,6 +137,7 @@ export default {
                     title: 'Graphics',
                     projects: [
                         { title: 'Salamander', link: '/projects/salamander' },
+                        { title: 'Mesh Area Lights', link: '/projects/mesh-area-lights'},
                         { title: 'Dual Rasterizer', link: '/projects/rasterizer' },
                         { title: 'Software Raytracer', link: '/projects/raytracer' }
                     ]
