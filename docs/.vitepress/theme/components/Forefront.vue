@@ -37,16 +37,13 @@
       <h2 class="section-title">About the Project</h2>
       <p class="section-description">
         Forefront is a 32-player VR battle game from Triangle Factory, the studio behind
-        Breachers and Hyper Dash. Players take sides in a war between O.R.E. and the local
-        armies and governments, fighting across large, semi-destructible environments built
-        for squad-scale combat — available on Meta Quest, Steam, PlayStation, and Pico.
+        Breachers and Hyper Dash. It is available on Meta Quest, Steam, PlayStation, and Pico.
       </p>
       <p class="section-description">
-        I started at Triangle Factory in February 2026, first as an intern and now in a student
+        I started working at Triangle Factory in February 2026, first as an intern and now in a student
         position, working on optimization and graphics programming for Forefront. Most of that
-        work doesn't fit neatly into a single feature — it's the kind of thing that shows up as
-        a build that's smaller, a frame that's faster, or a crash that no longer happens. The
-        posts below go into the specifics.
+        work doesn't fit into a single feature, it's a combination of profiling and finding potential optimizations
+        and a lot of testing. The posts below go into details about some original optimizations I managed to do during my time at Triangle Factory.
       </p>
     </div>
 
