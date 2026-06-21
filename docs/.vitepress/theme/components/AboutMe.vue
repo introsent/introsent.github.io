@@ -11,7 +11,7 @@
     </video>
     <div class="hero-overlay">
       <h1 class="hero-title">Salamander</h1>
-      <p class="hero-subtitle">A custom rendering engine built from scratch</p>
+      <p class="hero-subtitle">A Vulkan-based 3D rendering engine built with C++20</p>
       <button class="hero-button" @click.stop="goToProject">View Project</button>
     </div>
   </div>

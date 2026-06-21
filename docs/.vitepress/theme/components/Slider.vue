@@ -13,12 +13,19 @@
           @mouseleave="handleLeave(index)"
       >
         <video
+            v-if="project.video"
             :ref="el => setVideoRef(el, index)"
             :src="project.video"
             muted
             loop
             playsinline
             preload="auto"
+        />
+        <img
+            v-else-if="project.image"
+            :ref="el => setImageRef(el, index)"
+            :src="project.image"
+            :alt="project.title"
         />
         <div class="overlay">
           <h3>{{ project.title }}</h3>
@@ -36,18 +43,25 @@ export default {
     return {
       currentIndex: 0,
       videos: [],
+      images: [],
       projects: [
         {
           title: "Forefront",
           description: "Battlefield-inspired VR shooter",
           video: "/videos/forefront.mp4",
-          link: "/projects/salamander"
+          link: "/career/forefront"
         },
         {
           title: "Salamander",
           description: "Real-time rendering engine with Vulkan API",
           video: "/videos/salamander.mp4",
           link: "/projects/salamander"
+        },
+        {
+          title: "Mesh Area Lights",
+          description: "Research of sampling techniques",
+          image: "/images/mesh-lights/quad_ground_truth.png",
+          link: "/projects/mesh-area-lights"
         },
         {
           title: "Software Raytracer",
@@ -78,16 +92,22 @@ export default {
   },
   watch: {
     currentIndex(newIndex, oldIndex) {
-      // Reset old slide video
+      // Reset old slide media
       if (this.videos[oldIndex]) {
         this.videos[oldIndex].pause();
         this.videos[oldIndex].currentTime = 0;
         this.videos[oldIndex].style.filter = "brightness(20%)";
       }
+      if (this.images[oldIndex]) {
+        this.images[oldIndex].style.filter = "brightness(20%)";
+      }
 
-      // Initialize new slide video
+      // Initialize new slide media
       if (this.videos[newIndex]) {
         this.videos[newIndex].style.filter = "brightness(0%)";
+      }
+      if (this.images[newIndex]) {
+        this.images[newIndex].style.filter = "brightness(0%)";
       }
     }
   },
@@ -102,6 +122,16 @@ export default {
         }
       }
     },
+    setImageRef(el, index) {
+      if (el) {
+        this.images[index] = el;
+        if (index === this.currentIndex) {
+          this.$nextTick(() => {
+            el.style.filter = "brightness(70%)";
+          });
+        }
+      }
+    },
     nextSlide() {
       this.currentIndex = (this.currentIndex + 1) % this.projects.length;
     },
@@ -109,16 +139,22 @@ export default {
       this.currentIndex = (this.currentIndex - 1 + this.projects.length) % this.projects.length;
     },
     handleHover(index) {
-      if (index === this.currentIndex && this.videos[index]) {
+      if (index !== this.currentIndex) return;
+      if (this.videos[index]) {
         this.videos[index].play();
         this.videos[index].style.filter = "brightness(100%)";
+      } else if (this.images[index]) {
+        this.images[index].style.filter = "brightness(100%)";
       }
     },
     handleLeave(index) {
-      if (index === this.currentIndex && this.videos[index]) {
+      if (index !== this.currentIndex) return;
+      if (this.videos[index]) {
         this.videos[index].pause();
         this.videos[index].currentTime = 0;
         this.videos[index].style.filter = "brightness(70%)";
+      } else if (this.images[index]) {
+        this.images[index].style.filter = "brightness(70%)";
       }
     },
     openProject(link) {
@@ -130,6 +166,9 @@ export default {
     this.$nextTick(() => {
       if (this.videos[0] && !this.videos[0].style.filter) {
         this.videos[0].style.filter = "brightness(70%)";
+      }
+      if (this.images[0] && !this.images[0].style.filter) {
+        this.images[0].style.filter = "brightness(70%)";
       }
     });
   }
@@ -179,11 +218,13 @@ export default {
   z-index: 2;
 }
 
-.slide video {
+.slide video,
+.slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: filter 0.3s ease;
+  display: block;
 }
 
 .overlay {

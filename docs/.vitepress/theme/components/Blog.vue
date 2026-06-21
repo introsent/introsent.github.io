@@ -13,17 +13,18 @@
             v-for="post in posts"
             :key="post.slug"
             class="post-card"
+            :class="{ 'post-card-upcoming': !post.path }"
             @click="goToPost(post.path)"
         >
           <div class="post-card-meta">
-            <span class="post-date">{{ post.date }}</span>
+            <span class="post-date" :class="{ 'post-date-upcoming': !post.path }">{{ post.date }}</span>
             <span v-if="post.tags && post.tags.length" class="post-tags">
               <span v-for="tag in post.tags" :key="tag" class="post-tag">{{ tag }}</span>
             </span>
           </div>
           <h3 class="post-title">{{ post.title }}</h3>
           <p class="post-excerpt">{{ post.excerpt }}</p>
-          <span class="post-read-more">
+          <span v-if="post.path" class="post-read-more">
             Read post
             <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
               <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -48,12 +49,21 @@ export default {
           title: 'Font RAM Optimization in Unity',
           excerpt: 'TextMesh Pro requires fonts referenced via rich-text tags or settings defaults to live in a Resources folder, while Addressables pulls the same fonts into its own bundles. Here is how I tracked down every place that duplication hides, and stripped it out before each build.',
           tags: ['Unity', 'VR', 'Optimization']
+        },
+        {
+          slug: 'far-lod-batching',
+          path: '',
+          date: 'Coming soon',
+          title: 'Far LOD Batching with Compute Shaders & Indirect Drawing',
+          excerpt: 'Batching far-LOD meshes on the GPU with compute shaders and indirect draw calls, cutting CPU overhead on VR platforms where main thread matters.',
+          tags: ['Unity', 'Compute Shaders', 'Rendering']
         }
       ]
     };
   },
   methods: {
     goToPost(link) {
+      if (!link) return;
       window.location.href = link;
     }
   }
@@ -79,8 +89,8 @@ export default {
 
 .project-header h1 {
   font-size: 3rem;
-  line-height: 1.2;
-  padding-bottom: 0.1em;
+  line-height: 1.3;
+  padding-bottom: 0.15em;
   margin-bottom: 1rem;
   background: linear-gradient(45deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
   -webkit-background-clip: text;
@@ -88,6 +98,7 @@ export default {
   color: transparent;
   font-weight: 800;
 }
+
 
 .project-tagline {
   font-size: 1rem;
@@ -126,6 +137,11 @@ export default {
   border-color: rgba(100, 108, 255, 0.8);
 }
 
+.post-card-upcoming {
+  border-style: dashed;
+  border-color: rgba(100, 108, 255, 0.4);
+}
+
 .post-card-meta {
   display: flex;
   align-items: center;
@@ -139,6 +155,11 @@ export default {
   font-size: 0.85rem;
   color: var(--vp-c-text-2);
   font-weight: 500;
+}
+
+.post-date-upcoming {
+  color: var(--vp-c-brand);
+  font-weight: 600;
 }
 
 .post-tags {

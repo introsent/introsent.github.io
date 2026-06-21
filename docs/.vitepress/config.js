@@ -68,6 +68,11 @@ export default {
                 text: 'Projects',
                 items: [
                     { text: 'Overview', link: '/projects' },
+                    { text: 'Career',
+                    items: [
+                        { text: 'Forefront', link: '/career/forefront' }
+                    ]
+                    },
                     {
                         text: 'Graphics',
                         items: [

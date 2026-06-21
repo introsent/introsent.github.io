@@ -17,6 +17,7 @@ import Resume from './components/Resume.vue'
 import MeshAreaLights from "./components/MeshAreaLights.vue";
 import FontOptimization from "./components/FontOptimization.vue";
 import Blog from "./components/Blog.vue";
+import Forefront from "./components/Forefront.vue";
 
 export default {
     ...DefaultTheme,
@@ -39,5 +40,6 @@ export default {
         app.component('mesh-area-lights', MeshAreaLights)
         app.component('font-optimization', FontOptimization)
         app.component('blog', Blog)
+        app.component('forefront', Forefront)
     }
 }
