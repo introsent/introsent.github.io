@@ -433,13 +433,15 @@ export default {
 }
 
 .header h1 {
-  font-size: 3rem;
-  margin-bottom: 0.5rem;
-  background: linear-gradient(45deg, var(--vp-c-brand-1), var(--vp-c-brand-2));;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 800;
+    font-size: 3rem;
+    line-height: 1.2;
+    padding-bottom: 0.1em;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
 }
 
 .header p {

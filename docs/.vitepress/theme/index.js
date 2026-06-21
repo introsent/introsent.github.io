@@ -15,6 +15,8 @@ import NinjaGaiden from "./components/NinjaGaiden.vue";
 import PPGA from "./components/PPGA.vue";
 import Resume from './components/Resume.vue'
 import MeshAreaLights from "./components/MeshAreaLights.vue";
+import FontOptimization from "./components/FontOptimization.vue";
+import Blog from "./components/Blog.vue";
 
 export default {
     ...DefaultTheme,
@@ -35,5 +37,7 @@ export default {
         app.component('ppga', PPGA)
         app.component('resume', Resume)
         app.component('mesh-area-lights', MeshAreaLights)
+        app.component('font-optimization', FontOptimization)
+        app.component('blog', Blog)
     }
 }

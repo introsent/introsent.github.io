@@ -2,7 +2,7 @@
   <section class="contact-section">
     <div class="contact-container">
       <h1>Career</h1>
-      <p>Interested in graphics programming positions starting June 2026</p>
+      <p>Looking for a job starting October 2026</p>
       <a href="mailto:ivans.minajevs@outlook.com" class="contact-button">
         Get In Touch
       </a>

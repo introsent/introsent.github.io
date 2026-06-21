@@ -63,6 +63,7 @@ export default {
         nav: [
             { text: 'Home', link: '/' },
             { text: 'Resume', link: '/resume' },
+            { text: 'Blog', link: '/blog' },
             {
                 text: 'Projects',
                 items: [

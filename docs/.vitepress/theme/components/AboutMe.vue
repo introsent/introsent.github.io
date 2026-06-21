@@ -17,7 +17,7 @@
   </div>
 
   <div class="header">
-    <h1>Hello, I'm Ivans Minajevs!</h1>
+    <h1>Hello, I'm Ivans!</h1>
   </div>
 
   <section class="about-section">
@@ -31,21 +31,19 @@
         </div>
         <h3>Ivans Minajevs</h3>
         <p class="bio-text">
-          I am a C++ programmer specializing in Graphics programming and Render engineering. I am currently finishing my bachelor's degree at Howest University of Applied Sciences.
+          I am <b>graphics</b> and <b>optimizations</b> programmer from Latvia 🇱🇻
         </p>
         <p class="bio-text">
-          I like designing complex systems, solving physical & mathematical problems, as well as making something visually creative and appealing, yet optimized.
+          Throughout my studies and career I have always been interested in <b>complex</b>, difficult and large-scale tasks or <b>projects</b>.
         </p>
         <p class="bio-text">
-          I tutor math on the side - it's something I genuinely enjoy, and it taught me that explaining ideas is one of the best ways to clarify your own understanding.
-        </p>
-        <p class="bio-text">
-          I am eager to work in team and always learn and discover something new from experienced people in the industry.
+          I see <b>programming as a LEGO set</b> 🧩, where final image is given, but there is no guideline.
+          So instead you apply <b>creativity</b> to get to desired result, which is exactly what I enjoy doing the most.
         </p>
       </div>
       <div class="avatar-container">
         <img
-            src="/images/avatar_cut.png"
+            src="/images/avatar.png"
             alt="Ivans Minajevs"
             class="profile-avatar"
         />
@@ -59,10 +57,9 @@ export default {
   data() {
     return {
       tags: [
-        "Graphics Programming",
         "Render Engineering",
-        "Mathematics Tutoring",
-        "Game Development"
+        "Optimizations",
+        "Graphics Programming"
       ]
     }
   },
@@ -216,7 +213,7 @@ export default {
 
 .bio-text {
   line-height: 1.7;
-  font-size: 0.9rem;
+  font-size: 1.0rem;
   color: var(--vp-c-text-2);
 }
 

@@ -38,6 +38,12 @@ export default {
       videos: [],
       projects: [
         {
+          title: "Forefront",
+          description: "Battlefield-inspired VR shooter",
+          video: "/videos/forefront.mp4",
+          link: "/projects/salamander"
+        },
+        {
           title: "Salamander",
           description: "Real-time rendering engine with Vulkan API",
           video: "/videos/salamander.mp4",
