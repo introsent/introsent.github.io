@@ -34,185 +34,100 @@
         </div>
       </div>
 
-      <!-- Categories Grid -->
-      <div class="categories-grid">
-        <!-- Graphics Programming -->
-        <div class="category">
-          <h3 class="category-title"><i class="fas fa-paint-brush"></i> Graphics Programming</h3>
-          <div class="projects-grid">
-            <div
-                v-for="project in graphicsProjects"
-                :key="project.title"
-                class="project-card"
-                @click="goToProject(project.link)"
-                @mouseenter="(e) => { playPopupVideo(e, project); positionPopup(e) }"
-                @mouseleave="pausePopupVideo($event, project)"
-            >
-              <video
-                  class="project-thumbnail"
-                  muted
-                  loop
-                  playsinline
-                  preload="auto"
-              >
-                <source :src="project.video" type="video/mp4">
-              </video>
-              <div class="project-title">{{ project.title }}</div>
+      <!-- Category Rows -->
+      <div class="categories-rows">
+        <div
+            v-for="category in categories"
+            :key="category.name"
+            class="category-row"
+        >
+          <h3 class="category-title"><i :class="category.icon"></i> {{ category.name }}</h3>
 
-              <!-- Project Popup -->
-              <div class="project-popup">
+          <div class="row-scroller">
+            <button
+                v-if="category.projects.length > 3"
+                class="row-arrow row-arrow-left"
+                @click="scrollRow(category.name, -1)"
+            >
+              ←
+            </button>
+
+            <div class="row-track" :ref="el => setRowRef(el, category.name)">
+              <div
+                  v-for="project in category.projects"
+                  :key="project.title"
+                  class="project-card"
+                  @click="goToProject(project.link)"
+                  @mouseenter="(e) => openPopup(e, project, category.icon)"
+                  @mouseleave="scheduleClosePopup"
+              >
                 <video
-                    class="popup-video"
+                    v-if="project.video"
+                    class="project-thumbnail"
                     muted
                     loop
                     playsinline
+                    preload="auto"
                 >
                   <source :src="project.video" type="video/mp4">
                 </video>
-                <div class="popup-content">
-                  <h4><i class="fas fa-paint-brush"></i> {{ project.title }}</h4>
-                  <p>{{ project.description }}</p>
-                  <a :href="project.link" class="read-more" @click.stop>
-                    Read more <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
+                <img
+                    v-else-if="project.image"
+                    class="project-thumbnail"
+                    :src="project.image"
+                    :alt="project.title"
+                />
+                <div class="project-title">{{ project.title }}</div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <!-- Math & Physics Programming -->
-        <div class="category">
-          <h3 class="category-title"><i class="fas fa-atom"></i> Math & Physics Programming</h3>
-          <div class="projects-grid">
-            <div
-                v-for="project in physicsProjects"
-                :key="project.title"
-                class="project-card"
-                @click="goToProject(project.link)"
-                @mouseenter="(e) => { playPopupVideo(e, project); positionPopup(e) }"
-                @mouseleave="pausePopupVideo($event, project)"
+            <button
+                v-if="category.projects.length > 3"
+                class="row-arrow row-arrow-right"
+                @click="scrollRow(category.name, 1)"
             >
-              <video
-                  class="project-thumbnail"
-                  muted
-                  loop
-                  playsinline
-              >
-                <source :src="project.video" type="video/mp4">
-              </video>
-              <div class="project-title">{{ project.title }}</div>
-
-              <!-- Project Popup -->
-              <div class="project-popup">
-                <video
-                    class="popup-video"
-                    muted
-                    loop
-                    playsinline
-                >
-                  <source :src="project.video" type="video/mp4">
-                </video>
-                <div class="popup-content">
-                  <h4><i class="fas fa-atom"></i> {{ project.title }}</h4>
-                  <p>{{ project.description }}</p>
-                  <a :href="project.link" class="read-more" @click.stop>
-                    Read more <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Engines -->
-        <div class="category">
-          <h3 class="category-title"><i class="fas fa-cogs"></i> Engines</h3>
-          <div class="projects-grid">
-            <div
-                v-for="project in engineProjects"
-                :key="project.title"
-                class="project-card"
-                @click="goToProject(project.link)"
-                @mouseenter="(e) => { playPopupVideo(e, project); positionPopup(e) }"
-                @mouseleave="pausePopupVideo($event, project)"
-            >
-              <video
-                  class="project-thumbnail"
-                  muted
-                  loop
-                  playsinline
-              >
-                <source :src="project.video" type="video/mp4">
-              </video>
-              <div class="project-title">{{ project.title }}</div>
-
-              <!-- Project Popup -->
-              <div class="project-popup">
-                <video
-                    class="popup-video"
-                    muted
-                    loop
-                    playsinline
-                >
-                  <source :src="project.video" type="video/mp4">
-                </video>
-                <div class="popup-content">
-                  <h4><i class="fas fa-cogs"></i> {{ project.title }}</h4>
-                  <p>{{ project.description }}</p>
-                  <a :href="project.link" class="read-more" @click.stop>
-                    Read more <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Gameplay -->
-        <div class="category">
-          <h3 class="category-title"><i class="fas fa-gamepad"></i> Gameplay</h3>
-          <div class="projects-grid">
-            <div
-                v-for="project in gameplayProjects"
-                :key="project.title"
-                class="project-card"
-                @click="goToProject(project.link)"
-                @mouseenter="(e) => { playPopupVideo(e, project); positionPopup(e) }"
-                @mouseleave="pausePopupVideo($event, project)"
-            >
-              <video
-                  class="project-thumbnail"
-                  muted
-                  loop
-                  playsinline
-              >
-                <source :src="project.video" type="video/mp4">
-              </video>
-              <div class="project-title">{{ project.title }}</div>
-
-              <!-- Project Popup -->
-              <div class="project-popup">
-                <video
-                    class="popup-video"
-                    muted
-                    loop
-                    playsinline
-                >
-                  <source :src="project.video" type="video/mp4">
-                </video>
-                <div class="popup-content">
-                  <h4><i class="fas fa-gamepad"></i> {{ project.title }}</h4>
-                  <p>{{ project.description }}</p>
-                  <a :href="project.link" class="read-more" @click.stop>
-                    Read more <i class="fas fa-arrow-right"></i>
-                  </a>
-                </div>
-              </div>
-            </div>
+              →
+            </button>
           </div>
         </div>
       </div>
+
+      <!-- Shared Project Popup (teleported to body so it's never clipped) -->
+      <Teleport to="body">
+        <div
+            v-if="activePopup"
+            class="project-popup"
+            :class="{ visible: activePopup }"
+            :style="popupStyle"
+            @mouseenter="keepPopupOpen"
+            @mouseleave="closePopup"
+        >
+          <video
+              v-if="activePopup.video"
+              ref="popupVideoEl"
+              class="popup-video"
+              muted
+              loop
+              playsinline
+              autoplay
+          >
+            <source :src="activePopup.video" type="video/mp4">
+          </video>
+          <img
+              v-else-if="activePopup.image"
+              class="popup-video"
+              :src="activePopup.image"
+              :alt="activePopup.title"
+          />
+          <div class="popup-content">
+            <h4><i :class="activePopup.icon"></i> {{ activePopup.title }}</h4>
+            <p>{{ activePopup.description }}</p>
+            <a :href="activePopup.link" class="read-more" @click.stop>
+              Read more <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </Teleport>
 
       <!-- 3D Models Section -->
       <div class="sketchfab-container">
@@ -239,6 +154,7 @@ import { ref } from 'vue'
 export default {
   setup() {
     const featuredVideo = ref(null)
+    const rowRefs = {}
 
     const featuredProject = ref({
       title: "Salamander",
@@ -247,53 +163,97 @@ export default {
       link: "/projects/salamander"
     })
 
-    const graphicsProjects = ref([
+    const categories = ref([
       {
-        title: "Dual Rasterizer",
-        description: "Software and hardware (DirectX) rasterizer",
-        video: "/videos/rasterizer.mp4",
-        link: "/projects/rasterizer"
+        name: "Career",
+        icon: "fas fa-briefcase",
+        projects: [
+          {
+            title: "Forefront",
+            description: "Optimization & graphics programming at Triangle Factory",
+            video: "/videos/forefront.mp4",
+            link: "/career/forefront"
+          }
+        ]
       },
       {
-        title: "Software Raytracer",
-        description: "Software raytracer with C++",
-        video: "/videos/raytracer.mp4",
-        link: "/projects/raytracer"
-      }
-    ])
-
-    const physicsProjects = ref([
-      {
-        title: "Reel or nothing!",
-        description: "Physics programming for group project",
-        video: "/videos/reel-or-nothing.mp4",
-        link: "/projects/reel-or-nothing"
+        name: "Graphics Programming",
+        icon: "fas fa-paint-brush",
+        projects: [
+          {
+            title: "Mesh Area Lights",
+            description: "Research of different sampling strategies",
+            image: "/images/mesh-lights/quad_ground_truth.png",
+            link: "/projects/mesh-area-lights"
+          },
+          {
+            title: "Dual Rasterizer",
+            description: "Software and hardware (DirectX) rasterizer",
+            video: "/videos/rasterizer.mp4",
+            link: "/projects/rasterizer"
+          },
+          {
+            title: "Software Raytracer",
+            description: "Software raytracer with C++",
+            video: "/videos/raytracer.mp4",
+            link: "/projects/raytracer"
+          }
+        ]
       },
       {
-        title: "PPGA",
-        description: "Plane-based projective geometric algebra",
-        video: "/videos/ppga.mp4",
-        link: "/projects/ppga"
+        name: "Math & Physics Programming",
+        icon: "fas fa-atom",
+        projects: [
+          {
+            title: "Reel or nothing!",
+            description: "Physics programming for group project",
+            video: "/videos/reel-or-nothing.mp4",
+            link: "/projects/reel-or-nothing"
+          },
+          {
+            title: "PPGA",
+            description: "Plane-based projective geometric algebra",
+            video: "/videos/ppga.mp4",
+            link: "/projects/ppga"
+          }
+        ]
+      },
+      {
+        name: "Engines",
+        icon: "fas fa-cogs",
+        projects: [
+          {
+            title: "Nocturne Engine",
+            description: "Game engine with retro game example",
+            video: "/videos/qbert-video.mp4",
+            link: "/projects/nocturne"
+          }
+        ]
+      },
+      {
+        name: "Gameplay",
+        icon: "fas fa-gamepad",
+        projects: [
+          {
+            title: "Ninja Gaiden",
+            description: "Remake of the classic Ninja Gaiden NES game",
+            video: "/videos/ninja-gaiden.mp4",
+            link: "/projects/ninja-gaiden"
+          }
+        ]
       }
     ])
 
-    const engineProjects = ref([
-      {
-        title: "Nocturne Engine",
-        description: "Game engine with retro game example",
-        video: "/videos/qbert-video.mp4",
-        link: "/projects/nocturne"
-      }
-    ])
+    const setRowRef = (el, name) => {
+      if (el) rowRefs[name] = el
+    }
 
-    const gameplayProjects = ref([
-      {
-        title: "Ninja Gaiden",
-        description: "Remake of the classic Ninja Gaiden NES game",
-        video: "/videos/ninja-gaiden.mp4",
-        link: "/projects/ninja-gaiden"
-      }
-    ])
+    const scrollRow = (name, direction) => {
+      const track = rowRefs[name]
+      if (!track) return
+      const cardWidth = 280 + 24 // card min-width + gap
+      track.scrollBy({ left: direction * cardWidth * 2, behavior: 'smooth' })
+    }
 
     const playFeaturedVideo = () => {
       if (featuredVideo.value) {
@@ -308,13 +268,11 @@ export default {
       }
     }
 
-    const playPopupVideo = (event, project) => {
+    const playPopupVideo = (event) => {
       const card = event.currentTarget
-
-      // Play popup video
       const popup = card.querySelector('.project-popup')
       if (popup) {
-        const video = popup.querySelector('.popup-video')
+        const video = popup.querySelector('video.popup-video')
         if (video) {
           video.play().catch(e => console.log('Popup play error:', e))
         }
@@ -330,17 +288,14 @@ export default {
       const popupWidth = 340
       const viewportWidth = window.innerWidth
 
-      // Position to right by default
       popup.style.left = 'calc(100% + 20px)'
       popup.style.right = 'auto'
 
-      // Check if popup would go offscreen to the right
       if (cardRect.right + popupWidth > viewportWidth) {
         popup.style.left = 'auto'
         popup.style.right = 'calc(100% + 20px)'
       }
 
-      // Adjust vertical position if needed
       const popupHeight = 350
       const viewportHeight = window.innerHeight
       const spaceBelow = viewportHeight - cardRect.bottom
@@ -355,20 +310,18 @@ export default {
       }
     }
 
-    const pausePopupVideo = (event, project) => {
+    const pausePopupVideo = (event) => {
       const card = event.currentTarget
 
-      // Pause thumbnail video
-      const thumbnailVideo = card.querySelector('.project-thumbnail')
+      const thumbnailVideo = card.querySelector('video.project-thumbnail')
       if (thumbnailVideo) {
         thumbnailVideo.pause()
         thumbnailVideo.currentTime = 0
       }
 
-      // Pause popup video
       const popup = card.querySelector('.project-popup')
       if (popup) {
-        const video = popup.querySelector('.popup-video')
+        const video = popup.querySelector('video.popup-video')
         if (video) {
           video.pause()
           video.currentTime = 0
@@ -383,10 +336,9 @@ export default {
     return {
       featuredVideo,
       featuredProject,
-      graphicsProjects,
-      physicsProjects,
-      engineProjects,
-      gameplayProjects,
+      categories,
+      setRowRef,
+      scrollRow,
       playFeaturedVideo,
       pauseFeaturedVideo,
       playPopupVideo,
@@ -433,15 +385,15 @@ export default {
 }
 
 .header h1 {
-    font-size: 3rem;
-    line-height: 1.2;
-    padding-bottom: 0.1em;
-    margin-bottom: 1rem;
-    background: linear-gradient(45deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    font-weight: 800;
+  font-size: 3rem;
+  line-height: 1.2;
+  padding-bottom: 0.1em;
+  margin-bottom: 1rem;
+  background: linear-gradient(45deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
 }
 
 .header p {
@@ -539,62 +491,98 @@ export default {
   box-shadow: 0 8px 20px rgba(100, 108, 255, 0.4);
 }
 
-/* Categories Grid */
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+/* Category Rows */
+.categories-rows {
+  display: flex;
+  flex-direction: column;
   gap: 2.5rem;
   margin-bottom: 3rem;
-  z-index: 1;
-  position: relative;
 }
 
-.category {
+.category-row {
   background: var(--vp-c-bg-soft);
   border-radius: 16px;
   padding: 1.8rem;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   border: 1px solid rgba(100, 108, 255, 0.1);
-  transition: all 0.3s ease;
-  position: static;
-  z-index: auto;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.category:hover {
-  transform: translateY(-5px);
+.category-row:hover {
   box-shadow: 0 12px 25px rgba(100, 108, 255, 0.15);
   border-color: rgba(100, 108, 255, 0.3);
 }
 
 .category-title {
   font-size: 1.6rem;
-  margin-bottom: 1.5rem;
+  margin: 0 0 1.5rem 0;
   padding-bottom: 0.8rem;
   border-bottom: 2px solid rgba(100, 108, 255, 0.3);
   color: var(--vp-c-text-1);
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  position: static;
-  z-index: auto;
 }
 
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+.row-scroller {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.row-track {
+  display: flex;
   gap: 1.5rem;
-  position: static;
-  z-index: auto;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 0.25rem 0.25rem 1.25rem;
+  margin-bottom: -1rem;
+}
+
+.row-track::-webkit-scrollbar {
+  display: none;
+}
+
+.row-arrow {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(100, 108, 255, 0.15);
+  color: var(--vp-c-text-1);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, transform 0.2s ease;
+  z-index: 5;
+}
+
+.row-arrow:hover {
+  background: var(--vp-c-brand);
+  transform: scale(1.08);
+}
+
+.row-arrow-left {
+  margin-right: 0.75rem;
+}
+
+.row-arrow-right {
+  margin-left: 0.75rem;
 }
 
 .project-card {
   position: relative;
   z-index: 2;
+  flex: 0 0 280px;
+  width: 280px;
   border-radius: 14px;
   overflow: visible;
   height: 200px;
-  box-shadow: 0 5px
-  15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   cursor: pointer;
 }
@@ -612,6 +600,7 @@ export default {
   border-radius: 14px;
   filter: brightness(70%);
   transition: filter 0.3s ease;
+  display: block;
 }
 
 .project-card:hover .project-thumbnail {
@@ -632,7 +621,7 @@ export default {
   text-align: center;
 }
 
-/* Fixed popup styling */
+/* Project Popup */
 .project-popup {
   width: 340px;
   background: var(--vp-c-bg-soft);
@@ -643,9 +632,11 @@ export default {
   opacity: 0;
   z-index: 101;
   pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 20px);
   transform: translateY(calc(-50% + 10px)) scale(0.95);
   transition: all 0.3s ease;
-  position: static;
 }
 
 .project-card:hover .project-popup {
@@ -728,6 +719,7 @@ export default {
     position: fixed;
     top: 50% !important;
     left: 50% !important;
+    right: auto !important;
     transform: translate(-50%, -50%) !important;
     max-width: 90vw;
   }
@@ -735,6 +727,12 @@ export default {
   .project-card:hover .project-popup {
     opacity: 1 !important;
     transform: translate(-50%, -50%) scale(1) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .row-arrow {
+    display: none;
   }
 }
 
@@ -756,26 +754,23 @@ export default {
     font-size: 1.8rem;
   }
 
-  .category {
-    max-width: 225px;
+  .category-row {
+    padding: 1.2rem;
   }
 
   .category-title {
-    font-size: 1.4rem;
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr !important;
-    gap: 1.2rem;
+    font-size: 1.3rem;
   }
 
   .project-card {
-    height: 180px;
-    max-width: 100%;
+    flex: 0 0 200px;
+    width: 200px;
+    height: 150px;
   }
 
   .project-title {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    padding: 0.7rem;
   }
 
   .sketchfab-viewer {
@@ -824,29 +819,17 @@ export default {
   }
 
   .category-title {
-    font-size: 1.3rem;
-  }
-
-  .categories-grid {
-    width: fit-content;
-  }
-
-  .category {
-    width: 170px;
-  }
-
-  .category-title
-  {
     font-size: 1rem;
-    width: fit-content;
   }
 
-  .project-title
-  {
-    font-size: 0.8rem;
-  }
   .project-card {
-    width: 130px;
+    flex: 0 0 160px;
+    width: 160px;
+    height: 130px;
+  }
+
+  .project-title {
+    font-size: 0.8rem;
   }
 }
 </style>
