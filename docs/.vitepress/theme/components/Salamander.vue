@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="salamander-container">
     <!-- Project Header -->
     <div class="project-header">
@@ -61,7 +61,7 @@
         </div>
 
         <div class="stage-viewer">
-          <img
+          <img loading="lazy" decoding="async"
               :src="activeStage.image"
               :alt="activeStage.title"
               class="stage-image"
@@ -78,6 +78,7 @@
       <div class="video-container">
         <video
             class="demo-video"
+            preload="metadata"
             autoplay
             muted
             loop
@@ -124,38 +125,31 @@
       <h2 class="section-title">Technical Highlights</h2>
 
       <div class="tech-grid">
-        <div class="tech-card">
-          <div class="tech-icon">⚡</div>
+        <div class="tech-card">
           <h4>Synchronization 2</h4>
           <p>Efficient resource management</p>
         </div>
-        <div class="tech-card">
-          <div class="tech-icon">🔄</div>
+        <div class="tech-card">
           <h4>Dynamic Rendering</h4>
           <p>Flexible pipeline creation</p>
         </div>
-        <div class="tech-card">
-          <div class="tech-icon">📐</div>
+        <div class="tech-card">
           <h4>Vertex Pulling</h4>
           <p>GPU addresses for efficient geometry</p>
         </div>
-        <div class="tech-card">
-          <div class="tech-icon">💡</div>
+        <div class="tech-card">
           <h4>Deferred Rendering</h4>
           <p>Complex lighting scenarios</p>
         </div>
-        <div class="tech-card">
-          <div class="tech-icon">✂️</div>
+        <div class="tech-card">
           <h4>Alpha Cutout</h4>
           <p>Complex material support</p>
         </div>
-        <div class="tech-card">
-          <div class="tech-icon">🖼️</div>
+        <div class="tech-card">
           <h4>Mipmap Generation</h4>
           <p>Improved texture quality</p>
         </div>
-        <div class="tech-card">
-          <div class="tech-icon">📷</div>
+        <div class="tech-card">
           <h4>Auto Exposure</h4>
           <p>Realistic light adaptation</p>
         </div>
@@ -199,37 +193,37 @@ export default {
           id: "depth",
           title: "Depth Prepass",
           description: "The initial depth-only pass that optimizes subsequent rendering stages by determining visibility early in the pipeline.",
-          image: "/images/salamander/depth_prepass.png"
+          image: "/images/salamander/depth_prepass.webp"
         },
         {
           id: "albedo",
           title: "Albedo Map",
           description: "Stores the base color of surfaces without lighting information, representing the diffuse reflectivity.",
-          image: "/images/salamander/albedo.png"
+          image: "/images/salamander/albedo.webp"
         },
         {
           id: "normal",
           title: "Normal Map",
           description: "Encodes surface orientation information used for detailed lighting calculations.",
-          image: "/images/salamander/normal_map.png"
+          image: "/images/salamander/normal_map.webp"
         },
         {
           id: "roughness",
           title: "Roughness Map",
           description: "Defines the microsurface characteristics that affect how light scatters on the material.",
-          image: "/images/salamander/roughness.png"
+          image: "/images/salamander/roughness.webp"
         },
         {
           id: "lighting",
           title: "Lighting Pass (HDR)",
           description: "Combines all lighting contributions in high dynamic range, preserving details in bright and dark areas.",
-          image: "/images/salamander/lighting_pass.png"
+          image: "/images/salamander/lighting_pass.webp"
         },
         {
           id: "post",
           title: "Post-processing",
           description: "Applies tone mapping and exposure adjustments to convert HDR to displayable range.",
-          image: "/images/salamander/blit_pass.png"
+          image: "/images/salamander/blit_pass.webp"
         }
       ]
     };
@@ -264,30 +258,24 @@ export default {
 .salamander-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  color: #213547;
+  padding: 2rem 1.5rem;
+  color: var(--vp-c-text-1);
 }
 
 /* Header Styles */
 .project-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
   padding-top: 2rem;
 }
 
 .project-header h1 {
   font-size: 3rem;
-  line-height: 1.2;
-  padding-bottom: 0.1em;
   margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 800;
+  color: var(--vp-c-text-1);
+  letter-spacing: -0.028em;
+  font-weight: 600;
 }
-
 
 .tech-grid {
   display: grid;
@@ -305,8 +293,7 @@ export default {
 }
 
 .tech-card:hover {
-  border-color: var(--vp-c-brand);
-  transform: translateY(-3px);
+  border-color: var(--vp-c-brand);
 }
 
 .tech-icon {
@@ -329,20 +316,21 @@ export default {
 .project-tagline {
   font-size: 1rem;
   color: var(--vp-c-text-2);
-  margin: 0 auto 1.5rem;
+  margin: 0 0 1.5rem;
+  max-width: 60ch;
 }
 
 
 .project-meta {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   margin-top: 1rem;
 }
 
 .github-btn {
-  background: linear-gradient(135deg, #646cff, #535bf2);
-  color: white;
+  background: var(--pf-btn-bg);
+  color: var(--pf-btn-text);
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
   text-decoration: none;
@@ -351,19 +339,18 @@ export default {
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(100, 108, 255, 0.15);
+  box-shadow: 0 4px 6px rgb(var(--accent-rgb) / 0.15);
 }
 
-.github-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(100, 108, 255, 0.25);
+.github-btn:hover {
+  box-shadow: 0 6px 12px rgb(var(--accent-rgb) / 0.25);
   color: white;
 }
 
 .github-icon {
   width: 20px;
   height: 20px;
-  fill: white;
+  fill: currentColor;
 }
 
 /* Section Styles */
@@ -372,8 +359,10 @@ export default {
 }
 
 .section-title {
-  text-align: center;
-  font-size: 2.5rem;
+  text-align: left;
+  font-size: 1.9rem;
+  letter-spacing: -0.02em;
+  font-weight: 600;
   margin-bottom: 2.5rem;
   color: var(--vp-c-text-1);
 }
@@ -381,7 +370,7 @@ export default {
 .section-description {
   margin-bottom: 2rem;
   color: var(--vp-c-text-2);
-  text-align: center;
+  text-align: left;
 }
 
 /* Overview Cards */
@@ -397,15 +386,14 @@ export default {
   padding: 0.4rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
-  border: 3px solid rgba(100, 108, 255, 0.3);
+  border: 3px solid rgb(var(--accent-rgb) / 0.3);
   background: var(--vp-c-bg-soft);
   text-align: center;
 }
 
-.feature-card:hover {
-  transform: translateY(-5px);
+.feature-card:hover {
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  border-color: rgba(100, 108, 255, 0.8);
+  border-color: rgb(var(--accent-rgb) / 0.8);
 }
 
 
@@ -440,7 +428,7 @@ export default {
 .stage-name {
   padding: 0.6rem 1.2rem;
   border-radius: 6px;
-  background: #e2e8f0;
+  background: var(--vp-c-bg-soft);
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.2s ease;
@@ -450,9 +438,9 @@ export default {
 }
 
 .stage-name.active, .stage-name:hover {
-  background: #646cff;
-  color: white;
-  border-color: #646cff;
+  background: var(--pf-btn-bg);
+  color: var(--pf-btn-text);
+  border-color: var(--vp-c-brand-1);
 }
 
 .stage-viewer {
@@ -474,8 +462,10 @@ export default {
 /* Project Story */
 
 .project-story h3 {
-  text-align: center;
-  font-size: 2.5rem;
+  text-align: left;
+  font-size: 1.9rem;
+  letter-spacing: -0.02em;
+  font-weight: 600;
   margin-bottom: 2.5rem;
   color: var(--vp-c-text-1);
 }
@@ -488,7 +478,7 @@ export default {
 .challenges {
   margin-top: 1rem;
   padding-top: 0.5rem;
-  border-top: 1px solid rgba(100, 108, 255, 0.1);
+  border-top: 1px solid rgb(var(--accent-rgb) / 0.1);
 }
 
 .challenges h4 {
@@ -566,13 +556,13 @@ export default {
 }
 
 .reference-links a:hover {
-  color: #646cff;
+  color: var(--vp-c-brand-1);
   text-decoration: underline;
 }
 
 /* Future Plans */
 .future-plans {
-  background: linear-gradient(to right, #f1f5f9, #ffffff);
+  background: var(--vp-c-bg-soft);
   border-radius: 12px;
   padding: 2rem;
   margin: 2rem 0;
@@ -599,7 +589,7 @@ export default {
 
 .future-plans li::before {
   content: "▹";
-  color: #646cff;
+  color: var(--vp-c-brand-1);
   position: absolute;
   left: 0;
   font-size: 1.2rem;

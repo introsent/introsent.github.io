@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="nocturne-container">
     <!-- Project Header -->
     <div class="project-header">
@@ -46,23 +46,19 @@
     <div class="section">
       <h2 class="section-title">Game Features</h2>
       <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">🎮</div>
+        <div class="feature-card">
           <h3>QBert Mechanics</h3>
           <p>Classic pyramid tile navigation with color-changing mechanics</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">👾</div>
+        <div class="feature-card">
           <h3>Enemy AI System</h3>
           <p>Coily, Slick, Sam, Ugg, and Wrongway with distinct behaviors</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🏆</div>
+        <div class="feature-card">
           <h3>High Score System</h3>
           <p>Persistent storage of top 10 scores with player name entry</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">🎵</div>
+        <div class="feature-card">
           <h3>Audio Integration</h3>
           <p>Sound effects for jumps, hits, and level completion</p>
         </div>
@@ -232,21 +228,20 @@ export default {
 <style scoped>
 .nocturne-container {
   margin: 0 auto;
-  padding: 2rem 1.5rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  color: #213547;
+  padding: 2rem 1.5rem;
+  color: var(--vp-c-text-1);
 }
 
 /* Header Styles */
 .project-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
   padding-top: 2rem;
 }
 
 .project-header .project-meta .github-btn {
-  background: linear-gradient(135deg, #646cff, #535bf2);
-  color: white !important; /* Force white text */
+  background: var(--pf-btn-bg);
+  color: var(--pf-btn-text) !important; /* Force white text */
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
   text-decoration: none !important; /* Remove underline */
@@ -255,12 +250,11 @@ export default {
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(100, 108, 255, 0.15);
+  box-shadow: 0 4px 6px rgb(var(--accent-rgb) / 0.15);
 }
 
-.project-header .project-meta .github-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(100, 108, 255, 0.25);
+.project-header .project-meta .github-btn:hover {
+  box-shadow: 0 6px 12px rgb(var(--accent-rgb) / 0.25);
   color: white !important; /* Maintain white text on hover */
   text-decoration: none !important; /* Remove underline on hover */
 }
@@ -268,40 +262,36 @@ export default {
 .project-header .project-meta .github-icon {
   width: 20px;
   height: 20px;
-  fill: white;
+  fill: currentColor;
   margin-right: 10px; /* Added spacing */
 }
 
 .project-header h1 {
   font-size: 3rem;
-  line-height: 1.2;
-  padding-bottom: 0.1em;
   margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 800;
+  color: var(--vp-c-text-1);
+  letter-spacing: -0.028em;
+  font-weight: 600;
 }
-
 
 .project-tagline {
   font-size: 1rem;
   color: var(--vp-c-text-2);
-  margin: 0 auto 1.5rem;
+  margin: 0 0 1.5rem;
+  max-width: 60ch;
 }
 
 
 .project-meta {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   margin-top: 1rem;
 }
 
 .github-btn {
-  background: linear-gradient(135deg, #646cff, #535bf2);
-  color: white;
+  background: var(--pf-btn-bg);
+  color: var(--pf-btn-text);
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
   text-decoration: none;
@@ -310,19 +300,18 @@ export default {
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(100, 108, 255, 0.15);
+  box-shadow: 0 4px 6px rgb(var(--accent-rgb) / 0.15);
 }
 
-.github-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(100, 108, 255, 0.25);
+.github-btn:hover {
+  box-shadow: 0 6px 12px rgb(var(--accent-rgb) / 0.25);
   color: white;
 }
 
 .github-icon {
   width: 20px;
   height: 20px;
-  fill: white;
+  fill: currentColor;
 }
 
 
@@ -341,19 +330,15 @@ export default {
 .section-description {
   margin-bottom: 2rem;
   color: var(--vp-c-text-2);
-  text-align: center;
+  text-align: left;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 .section-description {
   margin-bottom: 2rem;
   color: var(--vp-c-text-2);
-  text-align: center;
+  text-align: left;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
   font-size: 1.1rem;
   line-height: 1.7;
 }
@@ -371,15 +356,14 @@ export default {
   padding: 0.4rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
-  border: 3px solid rgba(100, 108, 255, 0.3);
+  border: 3px solid rgb(var(--accent-rgb) / 0.3);
   background: var(--vp-c-bg-soft);
   text-align: center;
 }
 
-.feature-card:hover {
-  transform: translateY(-5px);
+.feature-card:hover {
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  border-color: rgba(100, 108, 255, 0.8);
+  border-color: rgb(var(--accent-rgb) / 0.8);
 }
 
 
@@ -424,7 +408,7 @@ export default {
   background: var(--vp-c-bg-soft);
   border-radius: 10px;
   padding: 1.5rem;
-  border: 1px solid rgba(100, 108, 255, 0.2);
+  border: 1px solid rgb(var(--accent-rgb) / 0.2);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -443,7 +427,7 @@ export default {
 }
 
 .component {
-  border: 1px solid rgba(100, 108, 255, 0.5);
+  border: 1px solid rgb(var(--accent-rgb) / 0.5);
   color: var(--vp-c-text-2);
   border-radius: 6px;
   padding: 0.7rem;
@@ -456,7 +440,7 @@ export default {
   color: var(--vp-c-text-2);
   border-radius: 10px;
   padding: 1.5rem;
-  border: 1px solid rgba(100, 108, 255, 0.2);
+  border: 1px solid rgb(var(--accent-rgb) / 0.2);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -491,15 +475,14 @@ export default {
   border-radius: 10px;
   padding: 1.5rem;
   padding-top: 0;
-  border: 1px solid rgba(100, 108, 255, 0.2);
+  border: 1px solid rgb(var(--accent-rgb) / 0.2);
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   color: var(--vp-c-text-2);
 }
 
-.pattern-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(100, 108, 255, 0.6);
+.pattern-card:hover {
+  border-color: rgb(var(--accent-rgb) / 0.6);
 }
 
 .pattern-card h3 {
@@ -521,7 +504,7 @@ export default {
   border-radius: 10px;
   padding: 1.5rem;
   padding-top: 0;
-  border: 1px solid rgba(100, 108, 255, 0.2);
+  border: 1px solid rgb(var(--accent-rgb) / 0.2);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   color: var(--vp-c-text-2);
 }
@@ -543,7 +526,7 @@ export default {
   background: var(--vp-c-bg-soft);
   border-radius: 10px;
   padding: 1.5rem;
-  border: 1px solid rgba(100, 108, 255, 0.2);
+  border: 1px solid rgb(var(--accent-rgb) / 0.2);
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 

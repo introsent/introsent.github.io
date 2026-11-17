@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="canva-section">
     <div class="canva-container">
       <div class="responsive-canva">
@@ -41,10 +41,10 @@ export default {
 
 
 .canva-container {
-  background: #f8fafc;
+  background: var(--vp-c-bg-soft);
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(100, 108, 255, 0.15);
+  border: 1px solid rgb(var(--accent-rgb) / 0.15);
   padding: 2rem;
   margin: 0 auto;
 }
@@ -77,7 +77,7 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #535bf2;
+  color: var(--vp-c-brand-2);
   text-decoration: none;
   font-weight: 500;
   padding: 0.6rem 1.2rem;
@@ -86,8 +86,7 @@ export default {
 }
 
 .canva-link a:hover {
-  background: rgba(100, 108, 255, 0.1);
-  transform: translateY(-2px);
+  background: rgb(var(--accent-rgb) / 0.1);
 }
 
 .canva-link svg {

@@ -1,173 +1,89 @@
+const SITE_URL = 'https://introsent.github.io'
+const DESCRIPTION =
+    'Ivans Minajevs: freelance graphics and optimization programmer. Memory, CPU and GPU optimization, profiling and rendering features for games, from standalone VR to custom C++ engines.'
+
 export default {
     title: 'Ivans Minajevs',
-    description: 'Portfolio website of Ivans Minajevs',
+    titleTemplate: ':title · Ivans Minajevs',
+    description: DESCRIPTION,
+    lang: 'en',
+    appearance: 'dark',
+
+    sitemap: {
+        hostname: SITE_URL
+    },
 
     head: [
-        ['meta', {
-            'http-equiv': 'Permissions-Policy',
-            content: 'accelerometer=*, gyroscope=*, fullscreen=*'
-        }],
+        ['meta', { name: 'theme-color', content: '#0d0e12' }],
         ['meta', {
             'http-equiv': 'Content-Security-Policy',
-            content: "frame-src https://sketchfab.com https://www.youtube.com https://player.vimeo.com https://*.canva.com; media-src 'self' data:"
+            content: "frame-src https://sketchfab.com https://www.youtube.com https://www.youtube-nocookie.com https://player.vimeo.com https://*.canva.com; media-src 'self' data:"
         }],
+
+        // Fonts: two families, few weights, swap so text renders immediately
+        ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+        ['link', { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' }],
         ['link', {
             rel: 'stylesheet',
-            href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+            href: 'https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Work+Sans:wght@400;500&display=swap'
         }],
-        ['link', {
-            rel: 'preload',
-            href: '/videos/ninja-gaiden.mp4',
-            as: 'video',
-            type: 'video/mp4'
-        }],
-        ['link', {
-            rel: 'preload',
-            href: '/videos/ppga.mp4',
-            as: 'video',
-            type: 'video/mp4'
-        }],
-        ['link', {
-            rel: 'preload',
-            href: '/videos/qbert-video.mp4',
-            as: 'video',
-            type: 'video/mp4'
-        }],
-        ['link', {
-            rel: 'preload',
-            href: '/videos/rasterizer.mp4',
-            as: 'video',
-            type: 'video/mp4'
-        }],
-        ['link', {
-            rel: 'preload',
-            href: '/videos/raytracer.mp4',
-            as: 'video',
-            type: 'video/mp4'
-        }],
-        ['link', {
-            rel: 'preload',
-            href: '/videos/reel-or-nothing.mp4',
-            as: 'video',
-            type: 'video/mp4'
-        }],
-        ['link', {
-            rel: 'preload',
-            href: '/videos/salamander.mp4',
-            as: 'video',
-            type: 'video/mp4'
-        }]
+
+        // Social previews
+        ['meta', { property: 'og:type', content: 'website' }],
+        ['meta', { property: 'og:site_name', content: 'Ivans Minajevs' }],
+        ['meta', { property: 'og:title', content: 'Ivans Minajevs · Freelance graphics & optimization programmer' }],
+        ['meta', { property: 'og:description', content: DESCRIPTION }],
+        ['meta', { property: 'og:image', content: `${SITE_URL}/images/og-image.jpg` }],
+        ['meta', { property: 'og:url', content: SITE_URL }],
+        ['meta', { name: 'twitter:card', content: 'summary_large_image' }]
     ],
 
     themeConfig: {
         nav: [
-            { text: 'Home', link: '/' },
-            { text: 'Resume', link: '/resume' },
-            { text: 'Blog', link: '/blog' },
+            { text: 'Services', link: '/#services' },
+            { text: 'Forefront', link: '/career/forefront' },
             {
                 text: 'Projects',
                 items: [
-                    { text: 'Overview', link: '/projects' },
-                    { text: 'Career',
-                    items: [
-                        { text: 'Forefront', link: '/career/forefront' }
-                    ]
-                    },
+                    { text: 'All projects', link: '/projects' },
                     {
-                        text: 'Graphics',
+                        text: 'Rendering',
                         items: [
-                            { text: 'Salamander', link: '/projects/salamander' },
-                            { text: 'Mesh Area Lights', link: '/projects/mesh-area-lights'},
+                            { text: 'Salamander (Vulkan)', link: '/projects/salamander' },
+                            { text: 'Mesh Area Lights', link: '/projects/mesh-area-lights' },
                             { text: 'Dual Rasterizer', link: '/projects/rasterizer' },
-                            { text: 'Software Raytracer', link: '/projects/raytracer' }
+                            { text: 'CPU Raytracer', link: '/projects/raytracer' }
                         ]
                     },
                     {
-                        text: 'Math & Physics',
+                        text: 'Engine & gameplay',
                         items: [
-                            { text: 'Reel or nothing!', link: '/projects/reel-or-nothing' },
-                            { text: 'PPGA', link: '/projects/ppga' }
+                            { text: 'Nocturne Engine', link: '/projects/nocturne' },
+                            { text: 'Ninja Gaiden Remake', link: '/projects/ninja-gaiden' }
                         ]
                     },
                     {
-                        text: 'Engine',
+                        text: 'Math & physics',
                         items: [
-                            { text: 'Nocturne Engine', link: '/projects/nocturne' }
-                        ]
-                    },
-                    {
-                        text: 'Gameplay',
-                        items: [
-                            { text: 'Ninja Gaiden', link: '/projects/ninja-gaiden' }
+                            { text: 'Reel or Nothing', link: '/projects/reel-or-nothing' },
+                            { text: 'PPGA Racing', link: '/projects/ppga' }
                         ]
                     }
                 ]
-            }
+            },
+            { text: 'Blog', link: '/blog' },
+            { text: 'Resume', link: '/resume' },
+            { text: 'Hire me', link: '/#contact' }
         ],
+
         footer: {
-            message: 'Designed and built by Ivans Minajevs.',
-            copyright: '© 2025 Ivans Minajevs | All rights reserved.'
+            message: 'Freelance graphics & optimization programming · Riga, Latvia · working remotely',
+            copyright: '© 2026 Ivans Minajevs'
         },
 
         socialLinks: [
-            {
-                icon: 'github',
-                link: 'https://github.com/introsent',
-                label: 'GitHub'
-            },
-            {
-                icon: 'linkedin',
-                link: 'https://linkedin.com/in/ivans-minajevs-991bbb214',
-                label: 'LinkedIn'
-            },
-            {
-                icon: {
-                    svg: `
-            <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M20 4H4C2.9 4 2 4.9 2 6v12c0 1.1 0.9 2 2 2h16
-                       c1.1 0 2-0.9 2-2V6c0-1.1-0.9-2-2-2zm0 2v0.01L12 11
-                       4 6.01V6h16zm0 12H4V8.99l8 5l8-5V18z"/>
-            </svg>
-          `
-                },
-                link: 'mailto:ivans.minajevs@outlook.com',
-                label: 'Email'
-            }
-        ],
-
-        mobileMenu: {
-            burgerLabel: 'Menu',
-            closeLabel: 'Close',
-            categories: [
-                {
-                    title: 'Graphics',
-                    projects: [
-                        { title: 'Salamander', link: '/projects/salamander' },
-                        { title: 'Mesh Area Lights', link: '/projects/mesh-area-lights'},
-                        { title: 'Dual Rasterizer', link: '/projects/rasterizer' },
-                        { title: 'Software Raytracer', link: '/projects/raytracer' }
-                    ]
-                },
-                {
-                    title: 'Math & Physics',
-                    projects: [
-                        { title: 'Reel or nothing!', link: '/projects/reel-or-nothing' },
-                        { title: 'PPGA', link: '/projects/ppga' }
-                    ]
-                },
-                {
-                    title: 'Engine',
-                    projects: [
-                        { title: 'Nocturne Engine', link: '/projects/nocturne' }
-                    ]
-                },
-                {
-                    title: 'Gameplay',
-                    projects: [
-                        { title: 'Ninja Gaiden', link: '/projects/ninja-gaiden' }
-                    ]
-                }
-            ]
-        }
+            { icon: 'github', link: 'https://github.com/introsent', ariaLabel: 'GitHub' },
+            { icon: 'linkedin', link: 'https://linkedin.com/in/ivans-minajevs-991bbb214', ariaLabel: 'LinkedIn' }
+        ]
     }
 }

@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="reel-container">
     <!-- Project Header -->
     <div class="project-header">
@@ -10,15 +10,14 @@
             class="play-btn"
             target="_blank"
         >
-          <i class="fas fa-fish"></i>
           Play on itch.io
         </a>
       </div>
     </div>
 
     <div style="position: relative; width: 100%; height: 0; padding-bottom: 56.25%;">
-      <iframe
-          src="https://www.youtube.com/embed/4B4SiHHXRAY?si=ZMsloBgu5hmIvb95"
+      <iframe loading="lazy"
+          src="https://www.youtube-nocookie.com/embed/4B4SiHHXRAY?si=ZMsloBgu5hmIvb95"
           title="YouTube video player"
           style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
           frameborder="0"
@@ -168,46 +167,41 @@ export default {
 .reel-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Helvetica Neue', sans-serif;
-  color: #213547;
+  padding: 2rem 1.5rem;
+  color: var(--vp-c-text-1);
 }
 
 .project-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
   padding-top: 2rem;
 }
 
 .project-header h1 {
   font-size: 3rem;
-  line-height: 1.2;
-  padding-bottom: 0.1em;
   margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 800;
+  color: var(--vp-c-text-1);
+  letter-spacing: -0.028em;
+  font-weight: 600;
 }
-
 
 .project-tagline {
   font-size: 1rem;
-  color: #64748b;
-  margin: 0 auto 1.5rem;
+  color: var(--vp-c-text-2);
+  margin: 0 0 1.5rem;
+  max-width: 60ch;
 }
 
 .project-meta {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   margin-top: 1rem;
 }
 
 .play-btn {
-  background: linear-gradient(135deg, #646cff, #535bf2);
-  color: white;
+  background: var(--pf-btn-bg);
+  color: var(--pf-btn-text);
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
   text-decoration: none;
@@ -216,12 +210,11 @@ export default {
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(100,108,255,0.15);
+  box-shadow: 0 4px 6px rgb(var(--accent-rgb) / 0.15);
 }
 
-.play-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(100,108,255,0.25);
+.play-btn:hover {
+  box-shadow: 0 6px 12px rgb(var(--accent-rgb) / 0.25);
   color: white;
 }
 
@@ -230,8 +223,10 @@ export default {
 }
 
 .section-title {
-  text-align: center;
-  font-size: 2.5rem;
+  text-align: left;
+  font-size: 1.9rem;
+  letter-spacing: -0.02em;
+  font-weight: 600;
   margin-bottom: 2.5rem;
   color: var(--vp-c-text-1);
 }
@@ -246,7 +241,7 @@ export default {
   text-align: center;
   font-weight: 600;
   font-size: 1.2rem;
-  color: #535bf2;
+  color: var(--vp-c-brand-2);
   margin-top: 1rem;
 }
 
@@ -262,15 +257,14 @@ export default {
   padding: 0.4rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
-  border: 3px solid rgba(100, 108, 255, 0.3);
+  border: 3px solid rgb(var(--accent-rgb) / 0.3);
   background: var(--vp-c-bg-soft);
   text-align: center;
 }
 
-.feature-card:hover {
-  transform: translateY(-5px);
+.feature-card:hover {
   box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-  border-color: rgba(100,108,255,0.8);
+  border-color: rgb(var(--accent-rgb) / 0.8);
 }
 
 .feature-card h3 {
@@ -290,7 +284,7 @@ export default {
 
 .devlog-entry {
   border-radius: 12px;
-  border: 3px solid rgba(100, 108, 255, 0.3);
+  border: 3px solid rgb(var(--accent-rgb) / 0.3);
   background: var(--vp-c-bg-soft);
   padding: 1.5rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -298,7 +292,7 @@ export default {
 
 .devlog-entry:hover {
   box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-  border-color: rgba(100,108,255,0.8);
+  border-color: rgb(var(--accent-rgb) / 0.8);
 }
 
 .devlog-title {
@@ -313,7 +307,7 @@ export default {
 }
 
 .devlog-date {
-  color: #64748b;
+  color: var(--vp-c-text-2);
   font-weight: 500;
   margin-bottom: 1rem;
 }
@@ -339,7 +333,7 @@ export default {
 }
 
 .team-column {
-  border: 3px solid rgba(100, 108, 255, 0.3);
+  border: 3px solid rgb(var(--accent-rgb) / 0.3);
   background: var(--vp-c-bg-soft);
   border-radius: 12px;
   padding: 1.5rem;
@@ -349,7 +343,7 @@ export default {
 .team-column:hover
 {
   box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-  border-color: rgba(100,108,255,0.8);
+  border-color: rgb(var(--accent-rgb) / 0.8);
 }
 
 .team-column h3 {

@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="dual-rasterizer-container">
     <!-- Project Header -->
     <div class="project-header">
@@ -27,21 +27,15 @@
       </p>
 
       <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-icon">
-          </div>
+        <div class="feature-card">
           <h3>Hardware Rendering</h3>
           <p>Leverages DirectX 11 GPU pipeline for accelerated rendering with advanced features.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-          </div>
+        <div class="feature-card">
           <h3>Software Rendering</h3>
           <p>Custom CPU-based rasterizer implementing fundamental graphics pipeline concepts.</p>
         </div>
-        <div class="feature-card">
-          <div class="feature-icon">
-          </div>
+        <div class="feature-card">
           <h3>Shading Techniques</h3>
           <p>Multiple shading modes including combined, observed area, diffuse, and specular.</p>
         </div>
@@ -58,13 +52,13 @@
       <div class="comparison-container" ref="comparisonContainer">
         <!-- FIXED: Hardware image container with clip-path -->
         <div class="image-container hardware-image" :style="{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }">
-          <img :src="renderingModes[0].image" alt="Hardware Rendering" class="comparison-image">
+          <img loading="lazy" decoding="async" :src="renderingModes[0].image" alt="Hardware Rendering" class="comparison-image">
           <div class="mode-label hardware-label">HARDWARE RENDERING</div>
         </div>
 
         <!-- FIXED: Software image as background -->
         <div class="image-container software-image">
-          <img :src="renderingModes[1].image" alt="Software Rendering" class="comparison-image">
+          <img loading="lazy" decoding="async" :src="renderingModes[1].image" alt="Software Rendering" class="comparison-image">
           <div class="mode-label software-label">SOFTWARE RENDERING</div>
         </div>
 
@@ -171,13 +165,13 @@ export default {
           id: "hardware",
           title: "Hardware Rendering",
           description: "DirectX 11 GPU-accelerated rendering with advanced features and effects.",
-          image: "/images/rasterizer/hardware.png"
+          image: "/images/rasterizer/hardware.webp"
         },
         {
           id: "software",
           title: "Software Rendering",
           description: "Custom CPU-based rasterizer demonstrating fundamental graphics pipeline concepts.",
-          image: "/images/rasterizer/software.png"
+          image: "/images/rasterizer/software.webp"
         }
       ],
       controls: [
@@ -239,48 +233,43 @@ export default {
 .dual-rasterizer-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  color: #213547;
+  padding: 2rem 1.5rem;
+  color: var(--vp-c-text-1);
 }
 
 /* Header Styles */
 .project-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
   padding-top: 2rem;
 }
 
 .project-header h1 {
   font-size: 3rem;
-  line-height: 1.2;
-  padding-bottom: 0.1em;
   margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 800;
+  color: var(--vp-c-text-1);
+  letter-spacing: -0.028em;
+  font-weight: 600;
 }
-
 
 .project-tagline {
   font-size: 1rem;
   color: var(--vp-c-text-2);
-  margin: 0 auto 1.5rem;
+  margin: 0 0 1.5rem;
+  max-width: 60ch;
   max-width: 800px;
 }
 
 .project-meta {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   margin-top: 1rem;
 }
 
 .github-btn {
-  background: linear-gradient(135deg, #646cff, #535bf2);
-  color: white;
+  background: var(--pf-btn-bg);
+  color: var(--pf-btn-text);
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
   text-decoration: none;
@@ -289,19 +278,18 @@ export default {
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(100, 108, 255, 0.15);
+  box-shadow: 0 4px 6px rgb(var(--accent-rgb) / 0.15);
 }
 
-.github-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(100, 108, 255, 0.25);
+.github-btn:hover {
+  box-shadow: 0 6px 12px rgb(var(--accent-rgb) / 0.25);
   color: white;
 }
 
 .github-icon {
   width: 20px;
   height: 20px;
-  fill: white;
+  fill: currentColor;
   margin-right: 10px;
 }
 
@@ -344,7 +332,7 @@ export default {
   left: 50%;
   height: 100%;
   width: 4px;
-  background: #fff;
+  background: var(--vp-c-bg-soft);
   cursor: col-resize;
   z-index: 3;
   transform: translateX(-50%);
@@ -364,7 +352,7 @@ export default {
   justify-content: center;
   font-size: 1.2rem;
   font-weight: bold;
-  color: #646cff;
+  color: var(--vp-c-brand-1);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -393,8 +381,10 @@ export default {
 }
 
 .section-title {
-  text-align: center;
-  font-size: 2.5rem;
+  text-align: left;
+  font-size: 1.9rem;
+  letter-spacing: -0.02em;
+  font-weight: 600;
   margin-bottom: 2.5rem;
   color: var(--vp-c-text-1);
   position: relative;
@@ -404,10 +394,8 @@ export default {
 .section-description {
   margin-bottom: 2rem;
   color: var(--vp-c-text-2);
-  text-align: center;
+  text-align: left;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* Overview Cards */
@@ -423,20 +411,19 @@ export default {
   padding: 0.8rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
-  border: 3px solid rgba(100, 108, 255, 0.1);
+  border: 3px solid rgb(var(--accent-rgb) / 0.1);
   text-align: center;
   background: var(--vp-c-bg-soft);
 }
 
-.feature-card:hover {
-  transform: translateY(-5px);
+.feature-card:hover {
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  border-color: rgba(100, 108, 255, 0.3);
+  border-color: rgb(var(--accent-rgb) / 0.3);
 }
 
 .feature-icon {
   font-size: 2.5rem;
-  color: #646cff;
+  color: var(--vp-c-brand-1);
   margin-bottom: 1rem;
 }
 
@@ -465,7 +452,7 @@ export default {
 
 .feature-list li::before {
   content: "•";
-  color: #646cff;
+  color: var(--vp-c-brand-1);
   position: absolute;
   left: 0;
   font-size: 1.2rem;
@@ -495,14 +482,13 @@ export default {
   transition: all 0.2s ease;
 }
 
-.control-card:hover {
-  transform: translateY(-3px);
+.control-card:hover {
   box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 .key {
-  background: #646cff;
-  color: white;
+  background: var(--pf-btn-bg);
+  color: var(--pf-btn-text);
   width: 50px;
   height: 50px;
   border-radius: 8px;
@@ -522,7 +508,7 @@ export default {
 }
 
 .mode {
-  background: #e2e8f0;
+  background: var(--vp-c-bg-soft);
   padding: 0.3rem 0.8rem;
   border-radius: 20px;
   font-size: 0.85rem;
@@ -568,7 +554,7 @@ export default {
 
 .detail-list li::before {
   content: "→";
-  color: #646cff;
+  color: var(--vp-c-brand-1);
   position: absolute;
   left: 0;
   font-size: 1.2rem;

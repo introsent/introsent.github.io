@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="ninja-container">
     <!-- Project Header -->
     <div class="project-header">
@@ -47,7 +47,7 @@
       <h2 class="section-title">Game Showcase</h2>
       <div class="video-container">
         <div style="padding:76.47% 0 0 0;position:relative;">
-          <iframe
+          <iframe loading="lazy"
               src="https://player.vimeo.com/video/1069498847?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
               frameborder="0"
               allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
@@ -182,14 +182,13 @@ export default {
 .ninja-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1.5rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  color: #213547;
+  padding: 2rem 1.5rem;
+  color: var(--vp-c-text-1);
 }
 
 /* Header Styles */
 .project-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
   padding-top: 2rem;
   border-radius: 16px;
@@ -199,33 +198,29 @@ export default {
 
 .project-header h1 {
   font-size: 3rem;
-  line-height: 1.2;
-  padding-bottom: 0.1em;
   margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 800;
+  color: var(--vp-c-text-1);
+  letter-spacing: -0.028em;
+  font-weight: 600;
 }
-
 
 .project-tagline {
   font-size: 1rem;
   color: var(--vp-c-text-2);
-  margin: 0 auto 1.5rem;
+  margin: 0 0 1.5rem;
+  max-width: 60ch;
 }
 
 .project-meta {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   margin-top: 1rem;
 }
 
 .github-btn {
-  background: linear-gradient(135deg, #646cff, #535bf2);
-  color: white;
+  background: var(--pf-btn-bg);
+  color: var(--pf-btn-text);
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
   text-decoration: none;
@@ -234,19 +229,18 @@ export default {
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(100, 108, 255, 0.15);
+  box-shadow: 0 4px 6px rgb(var(--accent-rgb) / 0.15);
 }
 
-.github-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(100, 108, 255, 0.25);
+.github-btn:hover {
+  box-shadow: 0 6px 12px rgb(var(--accent-rgb) / 0.25);
   color: white;
 }
 
 .github-icon {
   width: 20px;
   height: 20px;
-  fill: white;
+  fill: currentColor;
 }
 
 
@@ -256,8 +250,10 @@ export default {
 }
 
 .section-title {
-  text-align: center;
-  font-size: 2.5rem;
+  text-align: left;
+  font-size: 1.9rem;
+  letter-spacing: -0.02em;
+  font-weight: 600;
   margin-bottom: 2.5rem;
   color: var(--vp-c-text-1);
 }
@@ -265,10 +261,8 @@ export default {
 .section-description {
   margin-bottom: 2rem;
   color: var(--vp-c-text-2);
-  text-align: center;
+  text-align: left;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
 }
 
 /* Overview Cards */
@@ -277,15 +271,14 @@ export default {
   padding: 0.7rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
-  border: 3px solid rgba(100, 108, 255, 0.1);
+  border: 3px solid rgb(var(--accent-rgb) / 0.1);
   text-align: center;
   background: var(--vp-c-bg-soft);
 }
 
-.feature-card:hover {
-  transform: translateY(-5px);
+.feature-card:hover {
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  border-color: rgba(100, 108, 255, 0.3);
+  border-color: rgb(var(--accent-rgb) / 0.3);
 }
 
 .feature-card h3 {
@@ -309,8 +302,10 @@ export default {
 
 /* Project Story */
 .project-story h3 {
-  text-align: center;
-  font-size: 2.5rem;
+  text-align: left;
+  font-size: 1.9rem;
+  letter-spacing: -0.02em;
+  font-weight: 600;
   margin-bottom: 2.5rem;
   color: var(--vp-c-brand);
 }
@@ -322,7 +317,7 @@ export default {
 }
 
 .achievement {
-  background: rgba(100, 108, 255, 0.1);
+  background: rgb(var(--accent-rgb) / 0.1);
   border-radius: 10px;
   padding: 1.5rem;
   margin: 2rem 0;
@@ -397,7 +392,7 @@ export default {
   align-items: center;
   gap: 1rem;
   padding: 1rem 2rem;
-  background: #fff3f3;
+  background: rgb(var(--accent-rgb) / 0.08);
   border-radius: 8px;
 }
 
@@ -407,14 +402,14 @@ export default {
   background: var(--vp-c-bg-soft);
   border-radius: 12px;
   padding: 2rem;
-  border: 3px solid rgba(100, 108, 255, 0.1);
+  border: 3px solid rgb(var(--accent-rgb) / 0.1);
   transition: all 0.3s ease;
   margin-bottom: 2rem;
 }
 
 .checklist:hover
 {
-  border: 3px solid rgba(100, 108, 255, 0.3);
+  border: 3px solid rgb(var(--accent-rgb) / 0.3);
 }
 
 .checklist h3 {
@@ -440,13 +435,12 @@ export default {
 }
 
 .checklist-item:hover
-{
-  transform: translateY(-5px);
+{
 }
 
 .topic-status {
-  background: var(--vp-c-brand);
-  color: white;
+  background: var(--pf-btn-bg);
+  color: var(--pf-btn-text);
   width: 24px;
   height: 24px;
   border-radius: 50%;
@@ -462,11 +456,11 @@ export default {
 }
 
 .topic-week {
-  background: var(--vp-c-brand);
+  background: var(--pf-btn-bg);
   padding: 0.2rem 0.5rem;
   border-radius: 4px;
   font-size: 0.9rem;
-  color: white;
+  color: var(--pf-btn-text);
 }
 
 /* Libraries & References */
@@ -481,14 +475,14 @@ export default {
   background: var(--vp-c-bg-soft);
   border-radius: 12px;
   padding: 2rem;
-  border: 3px solid rgba(100, 108, 255, 0.1);
+  border: 3px solid rgb(var(--accent-rgb) / 0.1);
   transition: all 0.3s ease;
   margin-bottom: 2rem;
 }
 
 .reference-card:hover
 {
-  border: 3px solid rgba(100, 108, 255, 0.3);
+  border: 3px solid rgb(var(--accent-rgb) / 0.3);
 }
 
 .reference-card h3 {

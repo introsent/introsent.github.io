@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="mesh-lights-container">
     <!-- Project Header -->
     <div class="project-header">
@@ -105,7 +105,7 @@
         <div class="ground-truth-section">
           <h3>Ground Truth (20,000 SPP)</h3>
           <div class="ground-truth-image">
-            <img :src="scenes[activeScene].groundTruth" :alt="scenes[activeScene].name + ' ground truth'" />
+            <img loading="lazy" decoding="async" :src="scenes[activeScene].groundTruth" :alt="scenes[activeScene].name + ' ground truth'" />
           </div>
           <p class="scene-description">{{ scenes[activeScene].description }}</p>
         </div>
@@ -135,7 +135,7 @@
                 class="comparison-card"
             >
               <div class="comparison-image">
-                <img :src="getComparisonImage(strategy.id)" :alt="strategy.name" />
+                <img loading="lazy" decoding="async" :src="getComparisonImage(strategy.id)" :alt="strategy.name" />
               </div>
               <div class="comparison-info">
                 <h4>{{ strategy.name }}</h4>
@@ -191,14 +191,14 @@
         <div class="chart-card">
           <h3>MSE vs. Samples per Pixel</h3>
           <div class="chart-placeholder">
-            <img :src="scenes[activeScene].mseChart" alt="MSE vs SPP chart" />
+            <img loading="lazy" decoding="async" :src="scenes[activeScene].mseChart" alt="MSE vs SPP chart" />
           </div>
           <p class="chart-caption">Lower MSE indicates better convergence to ground truth.</p>
         </div>
         <div class="chart-card">
           <h3>Render Time vs. Samples per Pixel</h3>
           <div class="chart-placeholder">
-            <img :src="scenes[activeScene].timeChart" alt="Render time vs SPP chart" />
+            <img loading="lazy" decoding="async" :src="scenes[activeScene].timeChart" alt="Render time vs SPP chart" />
           </div>
           <p class="chart-caption">Hierarchical methods show overhead in simple scenes but scale better with complexity.</p>
         </div>
@@ -239,37 +239,30 @@
 
       <div class="tech-grid">
         <div class="tech-card">
-          <div class="tech-icon">⚡</div>
           <h4>Intel Embree 4</h4>
           <p>High-performance ray tracing</p>
         </div>
         <div class="tech-card">
-          <div class="tech-icon">🌳</div>
           <h4>Light BVH</h4>
           <p>SAOH-based tree construction</p>
         </div>
         <div class="tech-card">
-          <div class="tech-icon">🎯</div>
           <h4>Importance Sampling</h4>
           <p>Flux-weighted traversal</p>
         </div>
         <div class="tech-card">
-          <div class="tech-icon">👁️</div>
           <h4>Visibility Cache</h4>
           <p>Spatial hash grid learning</p>
         </div>
         <div class="tech-card">
-          <div class="tech-icon">⚖️</div>
           <h4>MIS Framework</h4>
           <p>Balance heuristic weighting</p>
         </div>
         <div class="tech-card">
-          <div class="tech-icon">📊</div>
           <h4>Statistical Validation</h4>
           <p>Mann-Whitney U tests</p>
         </div>
         <div class="tech-card">
-          <div class="tech-icon">🔢</div>
           <h4>C++20</h4>
           <p>Modern parallel execution</p>
         </div>
@@ -415,9 +408,9 @@ export default {
           id: 'quad',
           name: 'Quad Scene',
           description: 'Baseline scenario with a single rectangular area light. All strategies converge identically, confirming implementation correctness.',
-          groundTruth: '/images/mesh-lights/quad_ground_truth.bmp',
-          mseChart: '/images/mesh-lights/quad_mse_chart.png',
-          timeChart: '/images/mesh-lights/quad_time_chart.png',
+          groundTruth: '/images/mesh-lights/quad_ground_truth.webp',
+          mseChart: '/images/mesh-lights/quad_mse_chart.webp',
+          timeChart: '/images/mesh-lights/quad_time_chart.webp',
           results: [
             { strategy: 'Uniform', mse1: '1.47E-01', mse16: '1.92E-02', mse256: '1.34E-03', time256: '0.611' },
             { strategy: 'Area-Importance', mse1: '1.56E-01', mse16: '1.69E-02', mse256: '1.19E-03', time256: '2.905' },
@@ -435,9 +428,9 @@ export default {
           id: 'bunny',
           name: 'Bunny Scene',
           description: 'Stanford Bunny as mesh light (~200 triangles). Tests hierarchical sampling efficiency with geometric complexity.',
-          groundTruth: '/images/mesh-lights/bunny_ground_truth.bmp',
-          mseChart: '/images/mesh-lights/bunny_mse_chart.png',
-          timeChart: '/images/mesh-lights/bunny_time_chart.png',
+          groundTruth: '/images/mesh-lights/bunny_ground_truth.webp',
+          mseChart: '/images/mesh-lights/bunny_mse_chart.webp',
+          timeChart: '/images/mesh-lights/bunny_time_chart.webp',
           results: [
             { strategy: 'Uniform', mse1: '1.52E-01', mse16: '4.18E-02', mse256: '5.50E-03', time256: '1.701' },
             { strategy: 'Area-Importance', mse1: '1.23E-01', mse16: '1.92E-02', mse256: '3.53E-03', time256: '60.64' },
@@ -455,9 +448,9 @@ export default {
           id: 'flux-stress',
           name: 'Flux-Stress Scene',
           description: 'Triangles with varying emission intensities. Demonstrates dramatic advantage of flux-weighted hierarchical sampling.',
-          groundTruth: '/images/mesh-lights/flux_ground_truth.bmp',
-          mseChart: '/images/mesh-lights/flux_mse_chart.png',
-          timeChart: '/images/mesh-lights/flux_time_chart.png',
+          groundTruth: '/images/mesh-lights/flux_ground_truth.webp',
+          mseChart: '/images/mesh-lights/flux_mse_chart.webp',
+          timeChart: '/images/mesh-lights/flux_time_chart.webp',
           results: [
             { strategy: 'Uniform', mse1: '8.35E-01', mse16: '5.92E-01', mse256: '1.78E-01', time256: '1.480' },
             { strategy: 'Area-Importance', mse1: '8.23E-01', mse16: '5.75E-01', mse256: '2.39E-01', time256: '40.88' },
@@ -475,9 +468,9 @@ export default {
           id: 'occlusion-stress',
           name: 'Occlusion-Stress Scene',
           description: 'Significant geometric blocking between light and surfaces. Critical test for visibility-aware sampling methods.',
-          groundTruth: '/images/mesh-lights/occlusion_ground_truth.bmp',
-          mseChart: '/images/mesh-lights/occlusion_mse_chart.png',
-          timeChart: '/images/mesh-lights/occlusion_time_chart.png',
+          groundTruth: '/images/mesh-lights/occlusion_ground_truth.webp',
+          mseChart: '/images/mesh-lights/occlusion_mse_chart.webp',
+          timeChart: '/images/mesh-lights/occlusion_time_chart.webp',
           results: [
             { strategy: 'Uniform', mse1: '1.26E-01', mse16: '2.96E-02', mse256: '2.53E-03', time256: '1.361' },
             { strategy: 'Area-Importance', mse1: '9.79E-02', mse16: '1.87E-02', mse256: '1.42E-03', time256: '41.15' },
@@ -502,7 +495,7 @@ export default {
   methods: {
     getComparisonImage(strategyId) {
       const scene = this.scenes[this.activeScene];
-      return `/images/mesh-lights/${scene.id}_${strategyId}_${this.comparisonSPP}spp.bmp`;
+      return `/images/mesh-lights/${scene.id}_${strategyId}_${this.comparisonSPP}spp.webp`;
     },
     getMetric(strategyId, type) {
       const scene = this.scenes[this.activeScene];
@@ -521,46 +514,42 @@ export default {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1.5rem;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  color: #213547;
+  color: var(--vp-c-text-1);
 }
 
 /* Header Styles */
 .project-header {
-  text-align: center;
+  text-align: left;
   margin-bottom: 3rem;
   padding-top: 2rem;
 }
 
 .project-header h1 {
   font-size: 3rem;
-  line-height: 1.2;
-  padding-bottom: 0.1em;
   margin-bottom: 1rem;
-  background: linear-gradient(45deg, var(--vp-c-brand-1), var(--vp-c-brand-2));
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 800;
+  color: var(--vp-c-text-1);
+  letter-spacing: -0.028em;
+  font-weight: 600;
 }
 
 .project-tagline {
   font-size: 1.2rem;
-  color: var(--vp-c-text-2, #666);
-  margin: 0 auto 1.5rem;
+  color: var(--vp-c-text-2, var(--vp-c-text-2));
+  margin: 0 0 1.5rem;
+  max-width: 60ch;
 }
 
 .project-meta {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 1rem;
   margin-top: 1rem;
   flex-wrap: wrap;
 }
 
 .github-btn {
-  background: linear-gradient(135deg, #646cff, #535bf2);
-  color: white;
+  background: var(--pf-btn-bg);
+  color: var(--pf-btn-text);
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
   text-decoration: none;
@@ -569,24 +558,23 @@ export default {
   align-items: center;
   gap: 0.5rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(100, 108, 255, 0.15);
+  box-shadow: 0 4px 6px rgb(var(--accent-rgb) / 0.15);
 }
 
 .github-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(100, 108, 255, 0.25);
+  box-shadow: 0 6px 12px rgb(var(--accent-rgb) / 0.25);
   color: white;
 }
 
 .github-icon {
   width: 20px;
   height: 20px;
-  fill: white;
+  fill: currentColor;
 }
 
 .meta-badge {
-  background: linear-gradient(135deg, #646cff, #535bf2);
-  color: white;
+  background: var(--pf-btn-bg);
+  color: var(--pf-btn-text);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.85rem;
@@ -599,19 +587,19 @@ export default {
 }
 
 .section-title {
-  text-align: center;
-  font-size: 2.5rem;
+  text-align: left;
+  font-size: 1.9rem;
+  letter-spacing: -0.02em;
+  font-weight: 600;
   margin-bottom: 2.5rem;
-  color: var(--vp-c-text-1, #213547);
+  color: var(--vp-c-text-1, var(--vp-c-text-1));
 }
 
 .section-description {
   margin-bottom: 2rem;
-  color: var(--vp-c-text-2, #666);
-  text-align: center;
+  color: var(--vp-c-text-2, var(--vp-c-text-2));
+  text-align: left;
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
   line-height: 1.7;
 }
 
@@ -628,24 +616,23 @@ export default {
   padding: 1.5rem;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.3s ease;
-  border: 3px solid rgba(100, 108, 255, 0.3);
+  border: 3px solid rgb(var(--accent-rgb) / 0.3);
   background: var(--vp-c-bg-soft, #f9f9f9);
   text-align: center;
 }
 
 .feature-card:hover {
-  transform: translateY(-5px);
   box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  border-color: rgba(100, 108, 255, 0.8);
+  border-color: rgb(var(--accent-rgb) / 0.8);
 }
 
 .feature-card h3 {
-  color: var(--vp-c-brand, #646cff);
+  color: var(--vp-c-brand, var(--vp-c-brand-1));
   margin: 0 0 0.5rem 0;
 }
 
 .feature-card p {
-  color: var(--vp-c-text-2, #666);
+  color: var(--vp-c-text-2, var(--vp-c-text-2));
   margin: 0;
   font-size: 0.95rem;
 }
@@ -670,13 +657,12 @@ export default {
 
 .strategy-card:hover,
 .strategy-card.active {
-  border-color: #646cff;
-  transform: translateY(-3px);
-  box-shadow: 0 6px 12px rgba(100, 108, 255, 0.15);
+  border-color: var(--vp-c-brand-1);
+  box-shadow: 0 6px 12px rgb(var(--accent-rgb) / 0.15);
 }
 
 .strategy-card.active {
-  background: linear-gradient(135deg, rgba(100, 108, 255, 0.1), rgba(83, 91, 242, 0.1));
+  background: linear-gradient(135deg, rgb(var(--accent-rgb) / 0.1), rgb(var(--accent-rgb) / 0.1));
 }
 
 .strategy-icon {
@@ -685,13 +671,13 @@ export default {
 }
 
 .strategy-card h4 {
-  color: var(--vp-c-text-1, #213547);
+  color: var(--vp-c-text-1, var(--vp-c-text-1));
   margin: 0 0 0.3rem 0;
   font-size: 0.95rem;
 }
 
 .strategy-card p {
-  color: var(--vp-c-text-2, #666);
+  color: var(--vp-c-text-2, var(--vp-c-text-2));
   font-size: 0.8rem;
   margin: 0;
 }
@@ -700,16 +686,16 @@ export default {
   background: var(--vp-c-bg-soft, #f9f9f9);
   border-radius: 12px;
   padding: 2rem;
-  border-left: 4px solid #646cff;
+  border-left: 4px solid var(--vp-c-brand-1);
 }
 
 .strategy-details h3 {
-  color: var(--vp-c-brand, #646cff);
+  color: var(--vp-c-brand, var(--vp-c-brand-1));
   margin-top: 0;
 }
 
 .strategy-details p {
-  color: var(--vp-c-text-2, #666);
+  color: var(--vp-c-text-2, var(--vp-c-text-2));
   line-height: 1.7;
 }
 
@@ -723,7 +709,7 @@ export default {
 
 .formula-box code {
   color: #a5d6ff;
-  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-family: var(--vp-font-family-mono);
   font-size: 1rem;
 }
 
@@ -741,7 +727,7 @@ export default {
 .scene-tab {
   padding: 0.7rem 1.5rem;
   border-radius: 8px;
-  background: #e2e8f0;
+  background: var(--vp-c-bg-soft);
   cursor: pointer;
   white-space: nowrap;
   transition: all 0.2s ease;
@@ -751,8 +737,8 @@ export default {
 
 .scene-tab.active,
 .scene-tab:hover {
-  background: #646cff;
-  color: white;
+  background: var(--pf-btn-bg);
+  color: var(--pf-btn-text);
 }
 
 /* Scene Results */
@@ -768,7 +754,7 @@ export default {
 }
 
 .ground-truth-section h3 {
-  color: var(--vp-c-text-1, #213547);
+  color: var(--vp-c-text-1, var(--vp-c-text-1));
   margin-bottom: 1rem;
 }
 
@@ -787,7 +773,7 @@ export default {
 }
 
 .scene-description {
-  color: var(--vp-c-text-2, #666);
+  color: var(--vp-c-text-2, var(--vp-c-text-2));
   margin-top: 1rem;
   font-style: italic;
 }
@@ -799,7 +785,7 @@ export default {
 
 .comparison-section h3 {
   text-align: center;
-  color: var(--vp-c-text-1, #213547);
+  color: var(--vp-c-text-1, var(--vp-c-text-1));
   margin-bottom: 1rem;
 }
 
@@ -814,7 +800,7 @@ export default {
 
 .spp-selector label {
   font-weight: 500;
-  color: var(--vp-c-text-2, #666);
+  color: var(--vp-c-text-2, var(--vp-c-text-2));
 }
 
 .spp-buttons {
@@ -824,7 +810,7 @@ export default {
 
 .spp-buttons button {
   padding: 0.5rem 1rem;
-  border: 2px solid #e2e8f0;
+  border: 2px solid var(--vp-c-bg-soft);
   border-radius: 6px;
   background: white;
   cursor: pointer;
@@ -834,9 +820,9 @@ export default {
 
 .spp-buttons button.active,
 .spp-buttons button:hover {
-  background: #646cff;
-  color: white;
-  border-color: #646cff;
+  background: var(--pf-btn-bg);
+  color: var(--pf-btn-text);
+  border-color: var(--vp-c-brand-1);
 }
 
 /* Comparison Grid */
@@ -861,7 +847,6 @@ export default {
 }
 
 .comparison-card:hover {
-  transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
@@ -885,7 +870,7 @@ export default {
 
 .comparison-info h4 {
   margin: 0 0 0.5rem 0;
-  color: var(--vp-c-text-1, #213547);
+  color: var(--vp-c-text-1, var(--vp-c-text-1));
   font-size: 1rem;
 }
 
@@ -901,15 +886,15 @@ export default {
 
 .metric-label {
   font-size: 0.75rem;
-  color: var(--vp-c-text-2, #666);
+  color: var(--vp-c-text-2, var(--vp-c-text-2));
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .metric-value {
   font-weight: 600;
-  color: #646cff;
-  font-family: 'JetBrains Mono', monospace;
+  color: var(--vp-c-brand-1);
+  font-family: var(--vp-font-family-mono);
   font-size: 0.9rem;
 }
 
@@ -921,7 +906,7 @@ export default {
 
 .results-table-section h3 {
   text-align: center;
-  color: var(--vp-c-text-1, #213547);
+  color: var(--vp-c-text-1, var(--vp-c-text-1));
   margin-bottom: 1rem;
 }
 
@@ -941,12 +926,12 @@ export default {
 .results-table td {
   padding: 0.75rem 1rem;
   text-align: left;
-  border-bottom: 1px solid #e2e8f0;
+  border-bottom: 1px solid var(--vp-c-bg-soft);
 }
 
 .results-table th {
-  background: linear-gradient(135deg, #646cff, #535bf2);
-  color: white;
+  background: var(--pf-btn-bg);
+  color: var(--pf-btn-text);
   font-weight: 600;
   white-space: nowrap;
 }
@@ -961,7 +946,7 @@ export default {
 
 .results-table td {
   background: white;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--vp-font-family-mono);
 }
 
 .results-table td:first-child {
@@ -970,7 +955,7 @@ export default {
 }
 
 .results-table tbody tr:hover {
-  background: rgba(100, 108, 255, 0.05);
+  background: rgb(var(--accent-rgb) / 0.05);
 }
 
 /* Charts Section */
@@ -993,7 +978,7 @@ export default {
 }
 
 .chart-card h3 {
-  color: var(--vp-c-text-1, #213547);
+  color: var(--vp-c-text-1, var(--vp-c-text-1));
   margin: 0 0 1rem 0;
   text-align: center;
   font-size: 1.1rem;
@@ -1012,7 +997,7 @@ export default {
 }
 
 .chart-caption {
-  color: var(--vp-c-text-2, #666);
+  color: var(--vp-c-text-2, var(--vp-c-text-2));
   font-size: 0.85rem;
   text-align: center;
   margin-top: 0.75rem;
@@ -1035,32 +1020,31 @@ export default {
 }
 
 .finding-card:hover {
-  transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
 }
 
 .finding-card.highlight {
-  background: linear-gradient(135deg, rgba(100, 108, 255, 0.1), rgba(83, 91, 242, 0.15));
-  border: 2px solid rgba(100, 108, 255, 0.3);
+  background: linear-gradient(135deg, rgb(var(--accent-rgb) / 0.1), rgb(var(--accent-rgb) / 0.15));
+  border: 2px solid rgb(var(--accent-rgb) / 0.3);
 }
 
 .finding-number {
   font-size: 2.5rem;
   font-weight: 800;
-  color: rgba(100, 108, 255, 0.2);
+  color: rgb(var(--accent-rgb) / 0.2);
   position: absolute;
   top: 0.5rem;
   right: 1rem;
 }
 
 .finding-card h4 {
-  color: var(--vp-c-brand, #646cff);
+  color: var(--vp-c-brand, var(--vp-c-brand-1));
   margin: 0 0 0.5rem 0;
   font-size: 1rem;
 }
 
 .finding-card p {
-  color: var(--vp-c-text-2, #666);
+  color: var(--vp-c-text-2, var(--vp-c-text-2));
   margin: 0;
   font-size: 0.9rem;
   line-height: 1.6;
@@ -1084,8 +1068,7 @@ export default {
 }
 
 .tech-card:hover {
-  border-color: var(--vp-c-brand, #646cff);
-  transform: translateY(-3px);
+  border-color: var(--vp-c-brand, var(--vp-c-brand-1));
 }
 
 .tech-icon {
@@ -1094,13 +1077,13 @@ export default {
 }
 
 .tech-card h4 {
-  color: var(--vp-c-text-1, #213547);
+  color: var(--vp-c-text-1, var(--vp-c-text-1));
   margin: 0 0 0.3rem 0;
   font-size: 0.95rem;
 }
 
 .tech-card p {
-  color: var(--vp-c-text-2, #666);
+  color: var(--vp-c-text-2, var(--vp-c-text-2));
   font-size: 0.8rem;
   margin: 0;
 }
@@ -1121,8 +1104,8 @@ export default {
 }
 
 .reference-card h3 {
-  color: var(--vp-c-text-1, #213547);
-  border-bottom: 2px solid var(--vp-c-brand, #646cff);
+  color: var(--vp-c-text-1, var(--vp-c-text-1));
+  border-bottom: 2px solid var(--vp-c-brand, var(--vp-c-brand-1));
   padding-bottom: 0.5rem;
   margin-top: 0;
 }
@@ -1137,25 +1120,25 @@ export default {
   margin-bottom: 0.8rem;
   padding-left: 1.5rem;
   position: relative;
-  color: var(--vp-c-brand, #646cff);
+  color: var(--vp-c-brand, var(--vp-c-brand-1));
 }
 
 .reference-links li::before {
   content: "→";
   position: absolute;
   left: 0;
-  color: var(--vp-c-brand, #646cff);
+  color: var(--vp-c-brand, var(--vp-c-brand-1));
 }
 
 .reference-links a {
-  color: var(--vp-c-brand, #646cff);
+  color: var(--vp-c-brand, var(--vp-c-brand-1));
   text-decoration: none;
   transition: all 0.2s ease;
   font-weight: 500;
 }
 
 .reference-links a:hover {
-  color: #646cff;
+  color: var(--vp-c-brand-1);
   text-decoration: underline;
 }
 
@@ -1167,27 +1150,27 @@ export default {
 }
 
 .project-story h3 {
-  text-align: center;
+  text-align: left;
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  color: var(--vp-c-text-1, #213547);
+  color: var(--vp-c-text-1, var(--vp-c-text-1));
 }
 
 .project-story p {
   margin-bottom: 1rem;
-  color: var(--vp-c-text-2, #666);
+  color: var(--vp-c-text-2, var(--vp-c-text-2));
   line-height: 1.7;
 }
 
 .challenges {
   margin-top: 1.5rem;
   padding-top: 1rem;
-  border-top: 1px solid rgba(100, 108, 255, 0.1);
+  border-top: 1px solid rgb(var(--accent-rgb) / 0.1);
 }
 
 .challenges h4 {
   margin-bottom: 1rem;
-  color: var(--vp-c-brand, #646cff);
+  color: var(--vp-c-brand, var(--vp-c-brand-1));
   font-size: 1.3rem;
 }
 
@@ -1201,12 +1184,12 @@ export default {
   padding: 0.6rem 0;
   position: relative;
   line-height: 1.6;
-  color: var(--vp-c-text-2, #666);
+  color: var(--vp-c-text-2, var(--vp-c-text-2));
 }
 
 .challenge-list li::before {
   content: "•";
-  color: var(--vp-c-brand, #646cff);
+  color: var(--vp-c-brand, var(--vp-c-brand-1));
   position: absolute;
   left: -1.5rem;
   top: 0.2rem;
