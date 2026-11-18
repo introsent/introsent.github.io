@@ -1,0 +1,455 @@
+<!doctype html>
+<!--
+  Resume source, styled like introsent.github.io.
+  Build the PDF (Windows, Edge):
+    "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless=new --disable-gpu --no-pdf-header-footer
+      --virtual-time-budget=15000 --print-to-pdf="resume\Ivans Minajevs Resume.pdf" "file:///<repo>/resume/resume.html"
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Ivans Minajevs Resume</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&family=Work+Sans:wght@400;500&display=swap">
+<style>
+  @page { size: A4; margin: 0; }
+
+  :root {
+    --accent: #535bf2;
+    --accent-text: #3451b2;
+    --text-1: #16181d;
+    --text-2: #515866;
+    --text-3: #848b98;
+    --line: #e1e4ea;
+    --soft: #f2f4f7;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+  }
+
+  body {
+    width: 210mm;
+    height: 297mm;
+    padding: 11mm 14mm 9mm;
+    font-family: 'Hanken Grotesk', 'Segoe UI', sans-serif;
+    font-size: 8.9pt;
+    line-height: 1.45;
+    color: var(--text-1);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+    display: flex;
+    flex-direction: column;
+  }
+
+  a { color: inherit; text-decoration: none; }
+
+  .label {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 6.9pt;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-3);
+  }
+
+  .label--accent { color: var(--accent); }
+
+  /* ---------- Header ---------- */
+  .top {
+    display: grid;
+    grid-template-columns: 1fr 27mm;
+    gap: 8mm;
+    align-items: start;
+  }
+
+  .status {
+    display: flex;
+    align-items: center;
+    gap: 2mm;
+    margin: 0 0 2.5mm;
+  }
+
+  .status::before {
+    content: '';
+    width: 1.8mm;
+    height: 1.8mm;
+    background: var(--accent);
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 25pt;
+    line-height: 1.05;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+
+  .role {
+    margin-top: 1.5mm;
+    font-size: 12.5pt;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--text-2);
+  }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1mm 5mm;
+    margin: 3.5mm 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 8.4pt;
+  }
+
+  .contact a { color: var(--accent-text); }
+
+  .photo {
+    width: 27mm;
+    height: 27mm;
+    object-fit: cover;
+    border-radius: 1.5mm;
+  }
+
+  .summary {
+    margin: 4mm 0 0;
+    padding-top: 3.5mm;
+    border-top: 0.3mm solid var(--line);
+    font-size: 9.4pt;
+    line-height: 1.5;
+    color: var(--text-2);
+  }
+
+  .summary strong { color: var(--text-1); font-weight: 600; }
+
+  .award {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 1mm 3mm;
+    margin-top: 3.5mm;
+    padding: 2mm 3mm;
+    border: 0.3mm solid #c7cafb;
+    border-left: 0.9mm solid var(--accent);
+    border-radius: 1.2mm;
+    background: #f1f2fe;
+    font-size: 8.8pt;
+  }
+
+  .award .label { color: var(--accent); }
+
+  /* ---------- Columns ---------- */
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 60mm;
+    gap: 9mm;
+    margin-top: 5mm;
+    flex: 1;
+  }
+
+  h2 {
+    margin: 0 0 2.5mm;
+    padding-bottom: 1.5mm;
+    border-bottom: 0.3mm solid var(--line);
+  }
+
+  section + section { margin-top: 4.4mm; }
+
+  .item + .item { margin-top: 3.8mm; }
+
+  .item-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 3mm;
+  }
+
+  h3 {
+    margin: 0;
+    font-size: 10.2pt;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+
+  .when {
+    flex: none;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 7.6pt;
+    color: var(--text-3);
+    white-space: nowrap;
+  }
+
+  .sub {
+    margin: 0.6mm 0 1.5mm;
+    font-size: 8.5pt;
+    color: var(--text-2);
+  }
+
+  .sub a { color: var(--accent-text); }
+
+  ul.bullets {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ul.bullets li {
+    position: relative;
+    padding-left: 3.6mm;
+  }
+
+  ul.bullets li + li { margin-top: 0.9mm; }
+
+  ul.bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0.3mm;
+    top: 0.72em;
+    width: 2mm;
+    height: 0.3mm;
+    background: var(--accent);
+  }
+
+  ul.bullets strong { font-weight: 600; }
+
+  .proj p { margin: 0; color: var(--text-1); }
+
+  /* ---------- Sidebar ---------- */
+  .side section + section { margin-top: 4.6mm; }
+
+  .group + .group { margin-top: 2.6mm; }
+
+  .group .label { display: block; margin-bottom: 1.2mm; font-size: 6.6pt; }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2mm;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tags li {
+    padding: 0.35mm 1.8mm;
+    border: 0.3mm solid var(--line);
+    border-radius: 1mm;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 7.4pt;
+    color: var(--text-2);
+  }
+
+  .edu + .edu { margin-top: 2.6mm; }
+
+  .edu h3 { font-size: 9.2pt; }
+
+  .edu .sub { margin: 0.4mm 0 0; }
+
+  .rows { margin: 0; padding: 0; list-style: none; }
+
+  .rows li {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.9mm 0;
+    border-bottom: 0.3mm solid var(--line);
+  }
+
+  .rows li:last-child { border-bottom: 0; }
+
+  .rows .lvl {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 7.6pt;
+    color: var(--text-2);
+  }
+
+  .ach + .ach { margin-top: 2mm; }
+
+  .ach strong { display: block; font-weight: 600; }
+
+  .ach span { color: var(--text-2); font-size: 8.4pt; }
+
+  .quote {
+    margin: 0;
+    padding-left: 3mm;
+    border-left: 0.6mm solid var(--accent);
+    font-size: 9pt;
+    line-height: 1.45;
+  }
+
+  .quote-by {
+    margin-top: 1.6mm;
+    font-size: 8.3pt;
+    color: var(--text-2);
+  }
+
+  .quote-by strong { color: var(--text-1); font-weight: 600; }
+
+  .quote-by a { color: var(--accent-text); }
+
+  /* ---------- Footer ---------- */
+  .foot {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4mm;
+    padding-top: 2.5mm;
+    border-top: 0.3mm solid var(--line);
+  }
+
+  .foot a { color: var(--accent-text); }
+</style>
+</head>
+<body>
+  <header class="top">
+    <div>
+      <p class="label status">Available for freelance work · Riga, Latvia · remote</p>
+      <h1>Ivans Minajevs</h1>
+      <div class="role">Graphics &amp; optimization programmer</div>
+      <ul class="contact">
+        <li><a href="mailto:ivans.minajevs@outlook.com">ivans.minajevs@outlook.com</a></li>
+        <li><a href="https://introsent.github.io">introsent.github.io</a></li>
+        <li><a href="https://linkedin.com/in/ivans-minajevs-991bbb214">LinkedIn</a></li>
+        <li><a href="https://github.com/introsent">GitHub: introsent</a></li>
+      </ul>
+    </div>
+    <img class="photo" src="../docs/public/images/avatar.jpg" alt="Ivans Minajevs">
+  </header>
+
+  <p class="summary">
+    C++/C# programmer specializing in <strong>graphics programming and optimization</strong>: memory, CPU and GPU
+    performance, profiling, GPU compute shaders and rendering features. Experience with VR/XR development at
+    Triangle Factory on Forefront, a 32-player VR shooter that also runs on standalone Meta Quest headsets.
+  </p>
+
+  <div class="award">
+    <span class="label">The Game Awards 2026</span>
+    <span>Forefront, which I worked on, is nominated for Best VR/AR Game</span>
+  </div>
+
+  <main class="cols">
+    <div class="main">
+      <section>
+        <h2 class="label label--accent">Experience</h2>
+
+        <div class="item">
+          <div class="item-head">
+            <h3>Graphics &amp; optimization programmer · Triangle Factory</h3>
+            <span class="when">2026</span>
+          </div>
+          <p class="sub">Intern, then freelance · Unity · <a href="https://introsent.github.io/career/forefront">Forefront</a> on Meta Quest, Steam, PS VR2 and Pico</p>
+          <ul class="bullets">
+            <li><strong>Removed duplicate fonts and textures from memory</strong> (TextMesh Pro in Resources and Addressables at the same time): <strong>148 MB less RAM</strong> in the Unity Memory Profiler.</li>
+            <li>Build-time validation that fails the build when duplicate font references come back, plus custom build actions and memory stripping.</li>
+            <li>Moved far-LOD scenery batching from the CPU to the GPU with compute shaders and indirect draw calls.</li>
+            <li>CPU and GPU performance analysis on PS5 / PS VR2 with Razor; shader and rendering optimization.</li>
+            <li>Shipped player-facing features: weapon sight colour customization, the credits screen and vehicle skins.</li>
+          </ul>
+        </div>
+
+        <div class="item">
+          <div class="item-head">
+            <h3>Mathematics tutor · Preply</h3>
+            <span class="when">2023 – present</span>
+          </div>
+          <ul class="bullets">
+            <li>Preparing students in Latvia for the Mathematics 1 and 2 state exams.</li>
+            <li>Helping students with maths-heavy science projects.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="label label--accent">Selected projects</h2>
+
+        <div class="item proj">
+          <div class="item-head">
+            <h3>Salamander · Vulkan renderer, C++20</h3>
+            <span class="when">2025 – present</span>
+          </div>
+          <p class="sub"><a href="https://github.com/introsent/Salamander">github.com/introsent/Salamander</a></p>
+          <p>Standalone rendering engine: deferred shading, PBR, image-based lighting, shadow maps and HDR with automatic exposure. Built on Synchronization 2, dynamic rendering and vertex pulling.</p>
+        </div>
+
+        <div class="item proj">
+          <div class="item-head">
+            <h3>Mesh Area Lights · graduation work</h3>
+            <span class="when">2025 – 2026</span>
+          </div>
+          <p class="sub"><a href="https://introsent.github.io/projects/mesh-area-lights">introsent.github.io/projects/mesh-area-lights</a></p>
+          <p>Light sampling strategies for Monte Carlo path tracing in a custom CPU ray tracer built with Intel Embree, compared on noise (MSE) and render time.</p>
+        </div>
+
+        <div class="item proj">
+          <div class="item-head">
+            <h3>Font RAM Optimization in Unity · blog post</h3>
+            <span class="when">2026</span>
+          </div>
+          <p class="sub"><a href="https://introsent.github.io/projects/blog-font-deduplication">introsent.github.io/blog</a></p>
+          <p>Write-up of the duplicate font fix: pre-build stripping, build-time validation and runtime loading through Addressables.</p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="label label--accent">Reference</h2>
+        <p class="quote">"He stands out because he understands what happens underneath: he measures, finds the root cause and verifies the result."</p>
+        <p class="quote-by"><strong>Pieter Vantorre</strong>, CTO, Triangle Factory · full letter: <a href="https://introsent.github.io/recommendation">introsent.github.io/recommendation</a></p>
+      </section>
+    </div>
+
+    <aside class="side">
+      <section>
+        <h2 class="label label--accent">Skills</h2>
+        <div class="group">
+          <span class="label">Focus</span>
+          <ul class="tags"><li>Memory optimization</li><li>CPU / GPU profiling</li><li>Compute shaders</li><li>Rendering features</li></ul>
+        </div>
+        <div class="group">
+          <span class="label">Languages</span>
+          <ul class="tags"><li>C++</li><li>C#</li><li>HLSL</li><li>GLSL</li></ul>
+        </div>
+        <div class="group">
+          <span class="label">APIs &amp; engines</span>
+          <ul class="tags"><li>Vulkan</li><li>DirectX 11</li><li>OpenGL</li><li>Unity</li></ul>
+        </div>
+        <div class="group">
+          <span class="label">Tools</span>
+          <ul class="tags"><li>RenderDoc</li><li>NVIDIA Nsight</li><li>Razor (PS5)</li><li>OVR Metrics Tool</li><li>Unity Profiler</li><li>Memory Profiler</li></ul>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="label label--accent">Education</h2>
+        <div class="edu">
+          <h3><a href="https://digitalartsandentertainment.be">Howest, Digital Arts &amp; Entertainment</a></h3>
+          <p class="sub">Game Development, magna cum laude<br><span class="when">2023 – 2026</span></p>
+        </div>
+        <div class="edu">
+          <h3>Riga Zolitude Gymnasium</h3>
+          <p class="sub">Physics and mathematics<br><span class="when">2011 – 2023</span></p>
+        </div>
+      </section>
+
+      <section>
+        <h2 class="label label--accent">Languages</h2>
+        <ul class="rows">
+          <li><span>English</span><span class="lvl">C1</span></li>
+          <li><span>Latvian</span><span class="lvl">C1</span></li>
+          <li><span>Russian</span><span class="lvl">C2</span></li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="label label--accent">Achievements</h2>
+        <div class="ach"><strong>KSIM, 3rd place</strong><span>Team competition in informatics and mathematics</span></div>
+        <div class="ach"><strong><a href="https://rbs.lv/blog/2023/05/26/ten-high-school-student-teams-to-meet-at-the-finals-of-the-programming-competition/">Oribot</a></strong><span>Finals of the programming competition</span></div>
+      </section>
+
+    </aside>
+  </main>
+</body>
+</html>
