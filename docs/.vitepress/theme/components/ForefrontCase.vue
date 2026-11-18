@@ -64,12 +64,22 @@
         <div>
           <h2 class="pf-h2">Shared memory and a mobile chip</h2>
           <p class="pf-text sec-text">
-            A Quest 2 has <strong>6 GB</strong> of RAM and a Quest 3 has <strong>8 GB</strong>, shared by the OS, the CPU and
-            the GPU. If a game uses too much, the OS simply closes it. On top of that, every frame is rendered for two eyes:
-            at 72 Hz that leaves <strong>13.9 ms</strong> per frame, at 90 Hz <strong>11.1 ms</strong>.
+            A Quest 2 has <strong>6 GB</strong> of RAM and a Quest 3 has <strong>8 GB</strong>. If a game uses too much memory
+            at any point in time, the OS simply closes the app with an "out of memory" error. Optimizing memory also gives
+            room for better GPU profiling, since RenderDoc creates buffer copies during captures.
           </p>
           <p class="pf-text">
-            A 32-player shooter with large maps has to fit inside both limits, so textures, fonts, distant scenery and draw
+            On top of that, the CPU. Every frame is rendered for two eyes: at 72 Hz that leaves <strong>13.9 ms</strong> per
+            frame, at 90 Hz <strong>11.1 ms</strong>. Lower frame rates are not an option, because players start to feel
+            motion sick.
+          </p>
+          <p class="pf-text">
+            The GPU is our saving point. A lot of logic on the CPU side can be moved to the GPU with compute shaders, which
+            cuts the CPU workload significantly and keeps the frame rate high.
+          </p>
+          <p class="pf-text">
+            Balancing CPU, GPU and RAM usage, and the trade-offs of optimizing each one, is what game optimization is about.
+            A 32-player shooter with large maps has to fit inside all of it, so textures, fonts, distant scenery and draw
             calls all count.
           </p>
         </div>
